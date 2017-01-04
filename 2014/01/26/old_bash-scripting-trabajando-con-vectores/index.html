@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>(ES)(Bash Scripting) Trabajando con vectores | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hoy os traigo un mini-tutorial que puede ser muy útil a los que programan en bash normalmente, acerca de como trabajar con vectores o arrays. Antes de nada, para quien no lo sepa, la forma de declarar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(ES)(Bash Scripting) Trabajando con vectores">
+<meta property="og:url" content="http://jose-linares.com/2014/01/26/old_bash-scripting-trabajando-con-vectores/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="Hoy os traigo un mini-tutorial que puede ser muy útil a los que programan en bash normalmente, acerca de como trabajar con vectores o arrays. Antes de nada, para quien no lo sepa, la forma de declarar">
+<meta property="og:updated_time" content="2017-01-04T22:44:31.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="(ES)(Bash Scripting) Trabajando con vectores">
+<meta name="twitter:description" content="Hoy os traigo un mini-tutorial que puede ser muy útil a los que programan en bash normalmente, acerca de como trabajar con vectores o arrays. Antes de nada, para quien no lo sepa, la forma de declarar">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_bash-scripting-trabajando-con-vectores" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      (ES)(Bash Scripting) Trabajando con vectores
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Hoy os traigo un mini-tutorial que puede ser muy útil a los que programan en bash normalmente, acerca de como trabajar con vectores o arrays. Antes de nada, para quien no lo sepa, la forma de declarar vectores en bash es la siguiente: </p>
+<pre><code>$ nombre_vector[2]=6          #Introduce 6 en la posición 2 del vector
+$ nombre_vector[3]=e          #Introduce e en la posición 3 del vector
+</code></pre><p>Luego, para recuperar los distintos valores: </p>
+<pre><code>$ echo ${nombre_vector[2]}
+6
+$ echo ${nombre_vector[3]}
+e
+</code></pre><p>Normalmente se utilizan bucles para rellenar los vectores fácilmente, de una forma parecida a esta: </p>
+<pre><code>#Forma un vector con los primeros 100 números pares
+for x in $(seq 1 100);do
+   pares[$x]=$(($x*2))
+done
+</code></pre><p>Aunque también se pueden recuperar los valores del vector con un bucle, bash nos ofrece otras 2 maneras (equivalentes) para hacerlo de forma sencilla: </p>
+<pre><code>$ echo ${pares[*]}
+2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80 82 84 86 88 90 92 94 96 98 100 102 104 106 108 110 112 114 116 118 120 122 124 126 128 130 132 134 136 138 140 142 144 146 148 150 152 154 156 158 160 162 164 166 168 170 172 174 176 178 180 182 184 186 188 190 192 194 196 198 200
+$ echo ${pares[@]}
+2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80 82 84 86 88 90 92 94 96 98 100 102 104 106 108 110 112 114 116 118 120 122 124 126 128 130 132 134 136 138 140 142 144 146 148 150 152 154 156 158 160 162 164 166 168 170 172 174 176 178 180 182 184 186 188 190 192 194 196 198 200
+</code></pre><p>Por último, podemos recuperar el número de valores contenidos en un vector determinado de este modo: </p>
+<pre><code>$ echo ${#pares[@]}
+100
+</code></pre><p><strong>EXTRA:</strong> El uso de vectores nos puede ayudar también para saber el tamaño de una variable, o el numero de palabras que tiene. Lo mejor es verlo con un ejemplo: </p>
+<pre><code>#!/bin/bash
+
+#Recibe x parametros arbitrarios (x&gt;0)
+
+if [ $# -eq 0 ]
+then
+  echo &quot;Necesarios 1 o más argumentos&quot;
+  exit 1
+fi  
+echo $#
+
+var01=qwerty
+echo &quot;var01 = $var01&quot;
+echo &quot;Tamaño var01 = ${#var01}&quot;
+var02=&quot;Jose Linares Punto Com&quot;        #Los espacios cuentan como carácter
+echo &quot;var02 = $var02&quot;
+echo &quot;Tamaño var02 = ${#var02}&quot;
+
+#Intenté ligar con una programadora... pero no se deJava
+
+echo &quot;Numero de argumentos (palabras) = ${#@}&quot;
+echo &quot;Numero de argumentos (palabras) = ${#*}&quot;        #2a manera
+echo &quot;Numero de argumentos (palabras) = $#&quot;            #3a manera
+aux=&quot;$@&quot;
+echo &quot;Tamaño de los argumentos (caracteres)= ${#aux}&quot;
+
+exit 0
+</code></pre><p><a href="http://tldp.org/LDP/abs/html/" target="_blank" rel="external">Fuente</a></p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#396" title="2015-01-01 13:28:08">Born</a>:</strong> Hola Jose! Buen blog llevas y con mucha informacion interesante. Lo unico malo es que hay que moverse por todas las paginas para ver entradas al posts. I al final una pregunta. ¿Puede una persona coriente sin estudios en informatica y programacion aprender y entender Bash? Gracias</p>
+<p><strong><a href="#399" title="2015-01-05 12:24:05">Jose Linares Rojas</a>:</strong> Hola Born, no entiendo que quieres decir con que hay que moverse por todas las páginas :S Y por supuesto, todo es echarle ganas y tiempo ;)</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2014/01/26/old_bash-scripting-trabajando-con-vectores/" class="article-date">
+  <time datetime="2014-01-26T08:30:34.000Z" itemprop="datePublished">26/01/2014</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2014/01/27/old_bash-scripting-depurando-nuestros-scripts/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (ES)(Bash Scripting) Depurando nuestros scripts
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/12/29/old_mejora-el-rendimiento-de-tu-linux-con-opti_mem/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">(ES)Mejora el rendimiento de tu Linux con opti_mem</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

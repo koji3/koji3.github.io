@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>(ES)Hacer que el autocompletado de la terminal no sea sensible con mayúsculas y minúsculas | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="No es algo que marque un antes y un después en vuestras vidas, pero es un tip muy práctico. Hasta ahora si estábamos en nuestro home y queríamos movernos a descargas hacíamos: 
+cd Des + tabulador
+pero">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(ES)Hacer que el autocompletado de la terminal no sea sensible con mayúsculas y minúsculas">
+<meta property="og:url" content="http://jose-linares.com/2013/01/09/old_hacer-que-el-autocompletado-de-la-terminal-no-sea-sensible-con-mayusculas-y-minusculas/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="No es algo que marque un antes y un después en vuestras vidas, pero es un tip muy práctico. Hasta ahora si estábamos en nuestro home y queríamos movernos a descargas hacíamos: 
+cd Des + tabulador
+pero">
+<meta property="og:updated_time" content="2017-01-04T22:44:30.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="(ES)Hacer que el autocompletado de la terminal no sea sensible con mayúsculas y minúsculas">
+<meta name="twitter:description" content="No es algo que marque un antes y un después en vuestras vidas, pero es un tip muy práctico. Hasta ahora si estábamos en nuestro home y queríamos movernos a descargas hacíamos: 
+cd Des + tabulador
+pero">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_hacer-que-el-autocompletado-de-la-terminal-no-sea-sensible-con-mayusculas-y-minusculas" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      (ES)Hacer que el autocompletado de la terminal no sea sensible con mayúsculas y minúsculas
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>No es algo que marque un antes y un después en vuestras vidas, pero es un tip muy práctico. Hasta ahora si estábamos en nuestro home y queríamos movernos a descargas hacíamos: </p>
+<pre><code>cd Des + tabulador
+</code></pre><p>pero sin embargo, si hacíamos esto: </p>
+<pre><code>cd des + tabulador
+</code></pre><p>no nos autocompletaba el nombre de la carpeta, pues esta empieza con mayúscula y nosotros la escribíamos en minúscula. Lo único que tenemos que hacer para solucionar este problema es ejecutar este comando: </p>
+<pre><code>cd ~ &amp;&amp; echo &quot;set completion-ignore-case on&quot; &gt;&gt; .inputrc
+</code></pre><p>Ahora ya solo nos queda abrir un terminal nuevo y comprobar que funciona correctamente. (Tutorial de mis aportaciones a UsemosLinux)</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#261" title="2013-10-21 13:20:07">Alejandro</a>:</strong> Excelente!! Me ahorrará muchas correcciones!</p>
+<p><strong><a href="#266" title="2013-10-21 17:58:03">Jose Linares Rojas</a>:</strong> Me alegro que sea de utilidad! ;)</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2013/01/09/old_hacer-que-el-autocompletado-de-la-terminal-no-sea-sensible-con-mayusculas-y-minusculas/" class="article-date">
+  <time datetime="2013-01-09T18:50:30.000Z" itemprop="datePublished">09/01/2013</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2013/01/16/old_update-grub-en-fedora/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (ES)update-grub en Fedora
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/01/08/old_abrir-como-root-en-nautilus/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">(ES)Abrir como root en Nautilus</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

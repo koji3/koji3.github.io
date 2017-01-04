@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>(ES)Notificación por mail o SMS cuando se descarga un torrent | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="En este tutorial (muy útil si usas tu RaspberryPi como cliente torrent) te voy a enseñar a configurar Transmission para que te avise por correo o por SMS cuando acabe de descargar un torrent. Antes de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(ES)Notificación por mail o SMS cuando se descarga un torrent">
+<meta property="og:url" content="http://jose-linares.com/2013/01/20/old_notificacion-por-mail-o-sms-cuando-se-descarga-un-torrent/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="En este tutorial (muy útil si usas tu RaspberryPi como cliente torrent) te voy a enseñar a configurar Transmission para que te avise por correo o por SMS cuando acabe de descargar un torrent. Antes de">
+<meta property="og:updated_time" content="2017-01-04T22:44:30.607Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="(ES)Notificación por mail o SMS cuando se descarga un torrent">
+<meta name="twitter:description" content="En este tutorial (muy útil si usas tu RaspberryPi como cliente torrent) te voy a enseñar a configurar Transmission para que te avise por correo o por SMS cuando acabe de descargar un torrent. Antes de">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_notificacion-por-mail-o-sms-cuando-se-descarga-un-torrent" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      (ES)Notificación por mail o SMS cuando se descarga un torrent
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>En este tutorial (muy útil si usas tu RaspberryPi como cliente torrent) te voy a enseñar a configurar Transmission para que te avise por correo o por SMS cuando acabe de descargar un torrent. Antes de nada, necesitas tener instalado el Transmission y una cuenta en IFTTT.com. Si está todo, empezamos instalando el programa mutt: </p>
+<pre><code>sudo yum -y install mutt
+</code></pre><p>Y lo configuramos para el usuario que lo va a usar, creando el archivo de configuración: </p>
+<pre><code>gedit /home/tuusuario/.muttrc
+</code></pre><p>Y dentro de esta archivo pegamos: </p>
+<pre><code>set from = &quot;USER@gmail.com&quot;
+set realname = &quot;Jose-linares.com mola&quot;
+set imap_user = &quot;USER@gmail.com&quot;
+set imap_pass = &quot;CLAVE&quot;
+set folder = &quot;imaps://imap.gmail.com:993&quot;
+set spoolfile = &quot;+INBOX&quot;
+set postponed =&quot;+[Gmail]/Drafts&quot;
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+set smtp_url = &quot;smtp://USER@smtp.gmail.com:587/&quot;
+set smtp_pass = &quot;CLAVE&quot;
+</code></pre><p>Cambiando los campos en mayúscula por tu usuario y contraseña. Luego creamos el directorio donde guardará sus cosas que le hacen falta para funcionar: </p>
+<pre><code>mkdir -p /home/tuusuario/.mutt/cache
+</code></pre><p>Y ya tenemos el programa preparado para mandar mensajes, usando el siguiente comando: </p>
+<pre><code>echo &quot;Hola mundo!! desde GMail&quot; | mutt -s &quot;jose-linares.com&quot; destinatario@gmail.com
+</code></pre><p>Esto de por si ya es útil, pero vamos  añadirle más utilidad haciendo que nos mande un mensaje cada vez que se acabe de descargar un Torrent. Abrimos un nuevo documento vacío con gedit que se llame, por ejemplo, aviso_torrent y que contenga lo siguiente: </p>
+<pre><code>#!/bin/bash
+echo &quot;$TR_TORRENT_NAME descargado ok&quot; | mutt -s &quot;Nuevo Torrent Descargado&quot; destinatario@gmail.com
+</code></pre><p>Lo guardamos en la carpeta que queramos. Luego, para que Transmission nos avise, editamos el archivo ~/.config/transmission/settings.json y configuramos la línea “script-torrent-done-filename” cambiandola por el archivo que acabamos de crear. Así: </p>
+<pre><code>&quot;script-torrent-done-filename&quot;: &quot;carpeta/donde/este/el/archivo/aviso_torrent $TR_TORRENT$/$TR_TORRENT_NAME&quot;,
+</code></pre><p>Recuerda darle permisos de ejecución a ese archivo, sino no funcionará. Ok, ahora nos falta lo interesante de verdad, que nos avise por SMS. Para esto, necesitáis una cuenta en IFTTT.com . He creado una receta que se activa cada vez que os llega un correo con el asunto “Nuevo Torrent Descargado” y os manda un SMS a vuestro móvil. Sólo tenéis que activarla desde aquí: <a href="https://ifttt.com/recipes/75431" target="_blank" rel="external">https://ifttt.com/recipes/75431</a> Espero que os sirva el tutorial, si tenéis algún problema o alguna posible mejora, dejad un comentario :D (La mayor parte de la información de este post fué sacada de el blog <a href="http://rsppi.blogspot.com.es/2013/01/envio-de-emails-desde-consola-y-con.html" target="_blank" rel="external">rsppi.blogspot.com.es</a> de muy recomendada lectura)</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#30" title="2013-04-10 19:05:23">Facundo</a>:</strong> Buen dia, gracias por el tutorial, es el mismo que vi en rsppi.blogspot.net, salvo el del sms. Tengo un problema con la variable TR_TORRENT_NAME.. se envia vacia !! que puede ser? gracias !!</p>
+<p><strong><a href="#31" title="2013-04-10 19:12:11">koji3</a>:</strong> Buenos días Facundo, gracias por tu visita! Puede ser porque hayas configurado mal el archivo ~/.config/transmission/settings.json ? Mira a ver si has añadido esta linea correctamente: “script-torrent-done-filename”: “carpeta/donde/este/el/archivo/aviso_torrent $TR_TORRENT$/$TR_TORRENT_NAME”, Incluidas las 2 variables del final</p>
+<p><strong><a href="#205" title="2013-08-12 20:47:00">jorge</a>:</strong> Buenas noches Jose Me ha parecido muy interesante tu blog. He ido a probar lo de IFTTT y no consigo que me llegue el pin al móvil para empezar a utilizar el servicio. ¿Sabes qué prefijo hay que utilizar para España? Yo probé poniendo 0034 y mi número justo después pero nada. Muchas gracias y sigue así. Un saludo.</p>
+<p><strong><a href="#208" title="2013-08-14 15:37:26">Jose Linares Rojas</a>:</strong> Pues a decir verdad hace ya bastante tiempo que no me funciona esta función de IFTTT. Puede ser que tengan problemas con el envío de SMS</p>
+<p><strong><a href="#209" title="2013-08-14 16:15:14">jorge</a>:</strong> Gracias, pensaba que era yo que estaba haciendo algo mal. Un saludo.</p>
+<p><strong><a href="#321" title="2014-02-09 21:28:15">anon</a>:</strong> Gracias por tu web me sirvio de mucha ayuda el tutorial sobre yowsup oye podrías hacer un tuto donde enviara un whatsaap al terminar de descargar un torrent</p>
+<p><strong><a href="#322" title="2014-02-10 10:56:15">Jose Linares Rojas</a>:</strong> Hola, gracias por tu comentario. Me alegro de que te haya sido de utilidad. No creo que sea difícil adaptar el script para que haga lo que pides; solo hay que llamar a yousup en vez de a mutt con el mensaje que quieres que mande, inténtalo y me publicas un comentario con tu solución. Si no te funciona intento ayudarte ;) Un saludo!</p>
+<p><strong><a href="#328" title="2014-03-15 18:39:48">Ricardo</a>:</strong> Hola José, disculpa que te escribi antes por privado, no era mi intencion, simplemente estaba en una pagina que no veia los comentarios, la cosa es que no podia enviar mensajes desde el script creado, pero si manualmente desde linea de comando, la solucion la he encontrado dando vueltas por google y consiste en modificar el /etc/init.d/transmission-daemon y cambiar el user con que se ejecuta el transmission por root. Asi lo hice y funciona perfectamente, aunque no se si usarlo como root sea la solucion mas elegante. Tenia idea de probar con user pi y ver que pasa, pero creo que hay que cambiar varias cosas mas para ello. Bien, eso es todo y gracias por tu blog, es muy bueno.</p>
+<p><strong><a href="#330" title="2014-03-17 09:08:33">Jose Linares Rojas</a>:</strong> Hola Ricardo, sin ningún problema. Prefiero responder a las dudas generales por aquí para poder ayudar al máximo de gente posible y dejar el contacto para temas más privados. Tienes que tener cuidado del usuario que ejecuta el script concreto; efectivamente ejecutar cualquier cosa con privilegios root sin que sea estrictamente necesario es bastante peligroso. Prueba a poner en alguna parte del script algo parecido a esto: whoami &gt;&gt; /tmp/quiensoy Luego, abres el fichero quiensoy y te dirá el usuario que ejecuta el script. Todos los archivos de configuración de mutt tendrán que estar basados en este user. Gracias por tu visita, cuando tengas más datos no dudes en responder ;)</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2013/01/20/old_notificacion-por-mail-o-sms-cuando-se-descarga-un-torrent/" class="article-date">
+  <time datetime="2013-01-20T19:40:46.000Z" itemprop="datePublished">20/01/2013</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2013/01/21/old_como-activar-la-version-web-de-sotify-antes-que-nadie/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (ES)Como activar la version web de Spotify antes que nadie
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/01/20/old_187/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">(ES)Convertir imágenes en lote desde el terminal</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

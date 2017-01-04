@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>(ES)Actualizar de Fedora 18 a Fedora 19 sin reinstalar con FedUp | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Como sabréis, hoy día 2 de julio, ha salido la nueva Fedora 19 con bastantes mejoras con respecto a la versión anterior (podéis verlas aquí: https://fedoraproject.org/wiki/Releases/19/FeatureList ).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(ES)Actualizar de Fedora 18 a Fedora 19 sin reinstalar con FedUp">
+<meta property="og:url" content="http://jose-linares.com/2013/07/02/old_actualizar-de-fedora-18-a-fedora-19-sin-reinstalar-con-fedup/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="Como sabréis, hoy día 2 de julio, ha salido la nueva Fedora 19 con bastantes mejoras con respecto a la versión anterior (podéis verlas aquí: https://fedoraproject.org/wiki/Releases/19/FeatureList ).">
+<meta property="og:image" content="http://fedoraproject.org/static/images/f19_fpo_screenshot.png">
+<meta property="og:updated_time" content="2017-01-04T22:44:30.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="(ES)Actualizar de Fedora 18 a Fedora 19 sin reinstalar con FedUp">
+<meta name="twitter:description" content="Como sabréis, hoy día 2 de julio, ha salido la nueva Fedora 19 con bastantes mejoras con respecto a la versión anterior (podéis verlas aquí: https://fedoraproject.org/wiki/Releases/19/FeatureList ).">
+<meta name="twitter:image" content="http://fedoraproject.org/static/images/f19_fpo_screenshot.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_actualizar-de-fedora-18-a-fedora-19-sin-reinstalar-con-fedup" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      (ES)Actualizar de Fedora 18 a Fedora 19 sin reinstalar con FedUp
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p><img src="http://fedoraproject.org/static/images/f19_fpo_screenshot.png" alt=""> Como sabréis, hoy día 2 de julio, ha salido la nueva <strong>Fedora 19</strong> con bastantes mejoras con respecto a la versión anterior (podéis verlas aquí: <a href="https://fedoraproject.org/wiki/Releases/19/FeatureList" target="_blank" rel="external">https://fedoraproject.org/wiki/Releases/19/FeatureList</a> ). Hoy os voy a mostrar el método para actualizar sin tener que reinstalar gracias a <strong>FedUp</strong> en 4 pasos: </p>
+<pre><code>sudo yum update
+sudo yum install fedup
+sudo fedup-cli --network 19 --debuglog /root/fedupdebug.log
+sudo yum distro-sync
+</code></pre><p>Va a tardar bastante, pero mientras puedes jugar a lo que sea para entretenerte. Si tienes que parar en mitad del proceso, ejecuta esto para que no haya problemas: </p>
+<pre><code>sudo fedup-cli --clean
+</code></pre><p>Disfruta de Fedora 19 :D</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#127" title="2013-07-06 07:36:10">ricardo yasinski</a>:</strong> hola!!! me gustaria saber si al actualizar el sistema con FedUp me desabilitara las extensiones de gnome shell que ya tengo. Te lo digo porque intente instalar la version 19 en mi pc y me eran incompatibles el 99% de las extensiones de gnome shell!!! Desde ya muchas gracias!! Ricardo.</p>
+<p><strong><a href="#128" title="2013-07-06 09:41:48">Jose Linares Rojas</a>:</strong> Hola Ricardo, al actualizar, no te eliminará ninguna de las extensiones de Gnome (Ni ningún otro dato). Pero, al actualizar, algunas que no sean compatibles se deshabilitarán automáticamente. Si necesitas alguna en especial, puedes editarla para que indique que es compatible con la última versión de Gnome y, así, el sistema te permita habilitarla, pero seguramente fincione de forma errónea. Un saludo y gracias por el comentario :D</p>
+<p><strong><a href="#255" title="2013-10-04 19:03:47">Hugoz76</a>:</strong> amigo intente actualizar mi fedora 18 a 19 pero no me lo permite me envia las siguientes leyandas virtualbox/19/x86_64 | 951 B 00:00 virtualbox/primary | 3.0 kB 00:00 Error: can’t get boot images. The installation repo isn’t available. You need to specify one with –instrepo. alguna sugerencia?</p>
+<p><strong><a href="#256" title="2013-10-05 09:31:08">Jose Linares Rojas</a>:</strong> Hola Hugo, antes de nada gracias por el comentario. Has probado a eliminar el repo de VirtualBox?</p>
+<p><strong><a href="#313" title="2014-01-18 19:54:17">robert</a>:</strong> Hay alguna manera de actualizar con el live de 19 que tengo a la mano y sin internet, ya que tengo el win en la otra particion saludos.</p>
+<p><strong><a href="#342" title="2014-04-23 15:07:34">daopz</a>:</strong> buenas amigo al realizar la actualizacion desde fedup se borran archivos como imagenes o documentos de texto? puedo hacer esto para fedora 18 a fedora 20?</p>
+<p><strong><a href="#344" title="2014-04-25 11:42:11">Jose Linares Rojas</a>:</strong> Hola daopz. Este método no borra tu carpeta home. Y para actualizar a Fedora 20, es posible que tengas que pasar antes por la 19, pero todo es probar.</p>
+<p><strong><a href="#345" title="2014-04-30 19:47:12">Alex Requeno</a>:</strong> y afecta a programas instalados?</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2013/07/02/old_actualizar-de-fedora-18-a-fedora-19-sin-reinstalar-con-fedup/" class="article-date">
+  <time datetime="2013-07-02T14:50:13.000Z" itemprop="datePublished">02/07/2013</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2013/07/04/old_bash-scripting-usar-colores-en-la-terminal-obra-de-arte/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (ES)(Bash Scripting) Usar colores en la terminal + Obra de arte
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/06/29/old_bash-scripting-capturar-senal-ctrlc-y-cambiar-su-comportamiento/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">(ES)(Bash Scripting) Capturar señal ctrl+C y cambiar su comportamiento</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
