@@ -1,24 +1,135 @@
-extends partial/base
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2012 | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Jose-Linares.com">
+<meta property="og:url" content="http://jose-linares.com/archives/2012/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jose-Linares.com">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
 
-block header
-    header.header-section
-        .intro-header.no-img
+  
+    <body>
+  
+      <div id="container" class="container">
+        <div class="archive-container">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
 
-block content
-    .container
-        .row
-            .col-lg-6.col-lg-offset-3.col-md-10.col-md-offset-1
-                ul.archive-list
-                    - var prev_year = 0;
-                    - page.posts.each(function(post) {
-                    - var current_year = full_date(post.date, 'YYYY')-0;
-                    if current_year !== prev_year
-                        h2= current_year
-                    - prev_year=current_year;
-                    li.col-lg-offset-1.col-md-offset-1
-                        span.post-meta= full_date(post.date, 'MMM D')
-                        a.post-title(href=url_for(post.path))= post.title
-                    - })
+  <hr/>
+  
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/23/12/2012/20121223-mi-bashrc-perfecto/" class="archive-article-date">
+  <time datetime="2012-12-23T12:25:49.000Z" itemprop="datePublished">Dec 23 2012</time>
+</a>
+
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/23/12/2012/20121223-mi-bashrc-perfecto/">Mi .bashrc perfecto</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/23/12/2012/Hello-World/" class="archive-article-date">
+  <time datetime="2012-12-23T11:35:58.000Z" itemprop="datePublished">Dec 23 2012</time>
+</a>
+
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/23/12/2012/Hello-World/">Agregar subtítulos automáticamente desde el Terminal de Linux</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+
+  
+  
+    </div></section>
+  
 
 
 
+</div>
+
+      </div>
+      
+<footer id="footer" class="archive-footer footer">
+  <hr/>
+  <div id="footerContent" class="footer-content">
+    <p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Archive</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

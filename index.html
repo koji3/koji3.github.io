@@ -1,31 +1,85 @@
-extends partial/base
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Jose-Linares.com">
+<meta property="og:url" content="http://jose-linares.com/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jose-Linares.com">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
 
-block header
-    include partial/index-header
+  
+    <body class="home-body">
+  
+      <div id="container" class="container">
+        <div class="home">
+  <div class="content">
+    <div class="profile">
+      <h1 class="nickname">NickName</h1>
+      <div class="description">
+        <p><p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Aliquam eleifend dolor vitae <a href="http://hexo.io">libero pharetra</a> adipiscing. Etiam adipiscing dolor a quam tempor, eu convallis nulla varius. Aliquam sollicitudin risus a porta aliquam.</p>
+</p>
+      </div>
+    </div>
+    <hr/>
+    <ul class="links">
+      
+        <li>
+          <a href="/archives">Blog</a>
+        </li>
+      
+        <li>
+          <a href="https://github.com/">GitHub</a>
+        </li>
+      
+        <li>
+          <a href="http://instagram.com/">Instagram</a>
+        </li>
+      
+        <li>
+          <a href="http://facebook.com/">Facebook</a>
+        </li>
+      
+        <li>
+          <a href="http://twitter.com/">Twitter</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
 
-block content
-    div(class="container", role="main")
-        .row
-            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-                .posts-list
-                    - page.posts.each(function (post) {
-                    article.post-preview
-                        a(href=url_for(post.path))
-                            h2.post-title!= post.title
-                            if post.subtitle
-                                h3.post-subtitle!= post.subtitle
-                        include partial/post-meta
-                        +post_meta(post.date, post.tags)
-                        .post-entry!= post.excerpt
-                        a(href=url_for(post.path), class="post-read-more")!= __('more')
-                    - })
-                ul.pager.main-pager
-                    if page.prev
-                        li.previous
-                            a(href=url_for(page.prev === 1 ? "/" : ("/" + config.pagination_dir + "/" + page.prev)))= __('prev')
-                    if page.next
-                        li.next
-                            a(href=url_for("/" + config.pagination_dir + "/" + page.next))= __('next')
+      </div>
+      
+  <footer id="footer" class="home-footer footer">
+    <div id="copyright" class="copyright">
+      &copy; 2017 Jose Linares  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme &copy; <a href="https://github.com/geekplux" target="_blank">GeekPlux</a>
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
 
 
 
@@ -33,4 +87,6 @@ block content
 
 
 
-
+    </div>
+  </body>
+</html>
