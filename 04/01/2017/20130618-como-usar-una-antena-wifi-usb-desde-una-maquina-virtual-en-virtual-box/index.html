@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: Como usar una antena wifi USB desde una máquina virtual en Virtual Boxlink: http://jose-linares.com/como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box/author: koji3descripti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jose-Linares.com">
+<meta property="og:url" content="http://jose-linares.com/04/01/2017/20130618-como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="title: Como usar una antena wifi USB desde una máquina virtual en Virtual Boxlink: http://jose-linares.com/como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box/author: koji3descripti">
+<meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2013/06/Captura-de-pantalla-de-2013-06-18-194343.png">
+<meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2013/06/Captura-de-pantalla-de-2013-06-18-194336.png">
+<meta property="og:updated_time" content="2017-01-04T10:54:02.343Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jose-Linares.com">
+<meta name="twitter:description" content="title: Como usar una antena wifi USB desde una máquina virtual en Virtual Boxlink: http://jose-linares.com/como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box/author: koji3descripti">
+<meta name="twitter:image" content="http://jose-linares.com/wp-content/uploads/2013/06/Captura-de-pantalla-de-2013-06-18-194343.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-20130618-como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>title: Como usar una antena wifi USB desde una máquina virtual en Virtual Box<br>link: <a href="http://jose-linares.com/como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box/">http://jose-linares.com/como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box/</a><br>author: koji3<br>description:<br>post_id: 539<br>created: 2013/06/18 17:46:03<br>created_gmt: 2013/06/18 17:46:03<br>comment_status: open<br>post_name: como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box<br>status: publish<br>post_type: post</p>
+<h1 id="Como-usar-una-antena-wifi-USB-desde-una-maquina-virtual-en-Virtual-Box"><a href="#Como-usar-una-antena-wifi-USB-desde-una-maquina-virtual-en-Virtual-Box" class="headerlink" title="Como usar una antena wifi USB desde una máquina virtual en Virtual Box"></a>Como usar una antena wifi USB desde una máquina virtual en Virtual Box</h1><p>Ayer mismo me llegó una antena wifi que pedí a eBay. La verdad es que está bastante bien, es una Blueway BT-N9500. Aunque a primera vista el conjunto antena+embalaje+complementos pueda parecer cutre, la verdad es que por 17€ no está nada mal. La recomiendo. Pero bueno, dejo de haceros SPAM. El caso es que una vez probada en Fedora y todo iba bien, quería darle un uso mas “pro” en una distro específica de seguridad, tanto por los scripts tan molones que traen como por que tiene los drivers parcheados de fábrica. La distro que elegí fue Wifislax ( <a href="http://www.wifislax.com/" target="_blank" rel="external">http://www.wifislax.com/</a> ) Aunque tengo a backtrack, kali linux y alguna otra a la espera x) El caso es que el VirtualBox no me detectaba mi antena nueva. Bueno, ni la nueva, ni la vieja, ni ninguna. Para que la detecte tenemos que irnos a la configuración de la máquina virtual. Nos vamos a la sección USB, a la derecha le damos al simbolito de un usb con un signo + en verde y que dice “agregar filtro desde el dispositivo”. Ahí seleccionamos la tarjeta. Acto seguido vamos a la sección Red. En conectado a seleccionamos “Adaptador puente” y en nombre, el nombre de la tarjeta, que será algo como wlanX. Os dejo unas capturas que no os liéis: <img src="/wp-content/uploads/2013/06/Captura-de-pantalla-de-2013-06-18-194343.png" alt="Captura de pantalla de 2013-06-18 19:43:43"><img src="http://jose-linares.com/wp-content/uploads/2013/06/Captura-de-pantalla-de-2013-06-18-194336.png" alt="Captura de pantalla de 2013-06-18 19:43:36">   Ahora debería de funcionar todo. Recuerda que si la estás usando en VIrtualBox, no funciona en la máquina anfitrión.</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#248" title="2013-09-23 17:43:17">David</a>:</strong> Hola, he leido tu artículo sobre la Blueway BT-N9500 y tengo un problema con ella. Me detecta las redes pero no me conecta con ninguna (estoy probando con la del vecino de abajo que me dió la clave del wifi pero nada, solo lo doy conectado mediante el movil (zona wifi android AP) Si me puedes decir como resuelvo el problema te lo agradezco un montón. Gracias y un saludo.</p>
+<p><strong><a href="#249" title="2013-09-23 18:04:03">Jose Linares Rojas</a>:</strong> Hola David, En que sistema operativo la estás usando??</p>
+<p><strong><a href="#250" title="2013-09-23 18:11:47">David</a>:</strong> Windows 7 Ultimate</p>
+<p><strong><a href="#251" title="2013-09-23 19:04:55">Jose Linares Rojas</a>:</strong> En verdad en Windows también le daba fallo a un colega, pero porque detectaba una seguridad errónea. Por ejemplo, si la red era WPA, la veía como una WEP. Comprueba eso antes de seguir</p>
+<p><strong><a href="#260" title="2013-10-17 18:37:58">enric</a>:</strong> Hola david, tengo un problema y creo que es con la misma antena, cuando pongo a detectar redes desde la maquina virtual con wifislax no me detecta ninguna. Y cuando booteo desde usb al detectar redes pone “ bad FCS, spiking..”</p>
+<p><strong><a href="#268" title="2013-10-25 19:24:45">Paco</a>:</strong> Hola a todos, tengo un problema con mi wifi, me cambié de compañía telefónica a ONO, me instalaron un modem wifi y me compré una antena blueway BT-N9500, lo cierto es que mi conexión a internet se corta, a proximadamente a la hora en la tieda APP donde compré la antena me dicen que es cosa del modem y en la compañía telefónica me dicen que ellos me estan dando el servicio sin problemas, pero lo cierto es que me quedo sin conexión a internet y al reiniciar o apagar el ordenador se queda colgado un buen rato, mi sistema es windows 7, y me gustaría obtener ayuda para solventar mi problema pero a se posible es un leguaje para tontos pues no tengo ni idea de informática. Gracias.</p>
+<p><strong><a href="#270" title="2013-10-26 08:26:36">Jose Linares Rojas</a>:</strong> Hola Paco, te respondo por aquí en vez de por correo para generar debate y llegar entre todos a una posible solución. Lo primero sería instalar los drivers. En el miniCD que traía había drivers para windows?</p>
+<p><strong><a href="#273" title="2013-11-05 08:06:21">Martin</a>:</strong> Que tal, funciona con Kali?</p>
+<p><strong><a href="#274" title="2013-11-05 18:22:49">Jose Linares Rojas</a>:</strong> Si, debería funcionar perfectamente</p>
+<p><strong><a href="#293" title="2013-12-06 19:49:56">Nathu</a>:</strong> Hola he probado tu método y aún la máquina virtual no reconoce mi usb WIFI… es el modelo D-Link DWA-125.</p>
+<p><strong><a href="#294" title="2013-12-07 10:30:11">Jose Linares Rojas</a>:</strong> Puede ser por los drivers del sistema que estés virtualizando</p>
+<p><strong><a href="#307" title="2013-12-29 14:27:45">Oscar</a>:</strong> Que tal genio! Olle, vi esto de virtualbox y ya se me ocurrió preguntarte una cosa que llevo unos días con la cabeza como loca :S Te explico mi propósito con virtualbox: Bueno, tengo 2 proveedores de internet (pongamos Movistar y Ono), lo que quiero hacer, es que mi pc(mi sistema operativo sin virtualbox) este conectado a Movistar mediante Wi-Fi, y que en un sistema montado en virtualbox me coja ono, mediante el cable de red. Podiendo así disfrutar de las 2 conexiones a la vez! Asi que te agradecería que me echaras una mano en esto, estuve viendo tus entradas y creo que vales para esto, estas echo un crack! sigue así! :D Saludos</p>
+<p><strong><a href="#314" title="2014-01-27 23:06:48">Jose Linares Rojas</a>:</strong> Pues supongo que habrá alguna manera de hacerlo, pero no sé para que podría servir, la verdad x)</p>
+<p><strong><a href="#329" title="2014-03-17 04:57:49">Angel</a>:</strong> Hola. Como estas amigo no se si eso me funcione a mi. Veras tengo una antena TP-link WN723N que viene con un disco con el driver , cuando lo compre lo hice desesperadamente sin consultar en ningun lado y mi pc tenia ubuntu pero la antena solo es compactible con windows asi que cambie mi sistema operativo por windows 7. Funcionara igual con ubuntu en virtual box.</p>
+<p><strong><a href="#331" title="2014-03-17 09:17:09">Jose Linares Rojas</a>:</strong> Hola Angel Si la antena solo es compatible con Windows, no va a funcionar en otro sistema. Lo que pasa es que dudo mucho que solo sea compatible con Windows. Antes de cambiar a W7 probaste simplemente a conectarla a Ubuntu?</p>
+<p><strong><a href="#332" title="2014-03-20 05:23:01">Angel</a>:</strong> Hola si ya lo habia probado y no prendia el foco verde que prende ahora con el driver instalado. Estoy feliz de que tengas bastante interes en ayudarnos.</p>
+<p><strong><a href="#354" title="2014-06-14 17:25:19">oscar</a>:</strong> Se puede conectar la antena blueway a una tableta con androides? En caso afirmativo como? Gracias José</p>
+<p><strong><a href="#357" title="2014-06-20 21:18:49">ib</a>:</strong> Buenas, Me he comprado la antena blueway bt-N9500 y no se como se utiliza. Tengo un router inalambrico en casa y me he comprado la antena para recibir la señal de Internet en un portátil que esta en un segundo piso, mientras que el router esta en un primer piso. Conecto la antena al portátil mediante USB y cuando intento conectarme a la red wifi de casa o no la encuentra o la intensidad de la señal es muy débil. Tengo windows vista basic. Gracias por la ayuda.</p>
+<p><strong><a href="#359" title="2014-07-05 02:20:35">francisco</a>:</strong> Buenas jose-linares,yo tengo un problema tengo un adaptador wifi USB concretamente TP-LINK WN72VN y en un sistema wifislax virtualizado en virtualbox funciona pero es como si la red fuera cableada no entiendo estoy to rallao jejeje</p>
+<p><strong><a href="#360" title="2014-07-08 16:57:45">rodrigo medina</a>:</strong> tengo el mismo problema con la antena tl-wn722n no la detecta y no entendi eso de conectarla por ubuntu, me podrias explicar. gracias</p>
+<p><strong><a href="#364" title="2014-08-09 18:48:39">Alexis Ruiz</a>:</strong> Hola amigo, mira he probado tu guia, pero el virtualbox no me reconoce la tarjeta usb que tengo, esta es compatible con linux, tengo ubuntu y parece que si la reconoce automaticamente ya que me reconoce las redes y me conecto con ella, pero a la hora de probar con kali.. nada, no la reconoce, tengo el cd de instalación pero en windows, me estoy quemando la cabeza buscando soluciones, agradecería mucho que pudieras ayudar, buen día.</p>
+<p><strong><a href="#405" title="2015-01-14 10:02:51">pedro baños</a>:</strong> HOLA.TENGO UN PROBLEMA CON LA CONEXION WIFI DE ONO Q NO ME LLEGA BIEN LA SEÑAL EN CASA.MI PREGUNTA ES¿ME LLEGARIA MEJOR LA SEÑAL CON LA INSTALACION DE UNA ANTENA WIFI?</p>
+<p><strong><a href="#411" title="2015-02-11 08:58:28">alvaro</a>:</strong> Hola buenas me gustaria que me contentaras a esta duda que tengo llevo unos dias probando aver si me coje mi maquina virtual de kali linux en virtual box mi tarjeta red usb porque por lo visto la que viene insetarada con el pc virtual box no la reconoce. Mi duda es que si la tarjeta usb que quiero utilizar en kali linux para ponerla en modo monitor tiene que ser compatible con linux y a la vez con mi sistema operativo windons . O solamente con que sea compatible con linux y instalando los drivers en la maquina virtual bastaria? Gracias porfabor need respuesta :S</p>
+<p><strong><a href="#427" title="2015-09-29 10:06:47">julio jaramillo</a>:</strong> No consigo que se conecte el usb wifi con wifislax</p>
+<p><strong><a href="#429" title="2015-10-20 22:08:30">johnatan</a>:</strong> No me funciono lo que tienes publicado en el post, tengo una antena usb wireless tp-link 7200, y aun no me detecta mi s.o linux kali linux. por Favor necesito ayuda, gracias… te agradezco ante mano</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/04/01/2017/20130618-como-usar-una-antena-wifi-usb-desde-una-maquina-virtual-en-virtual-box/" class="article-date">
+  <time datetime="2017-01-04T22:11:59.609Z" itemprop="datePublished">04/01/2017</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/04/01/2017/20130622-bash-scripting-acortar-urls-con-adf-ly/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/04/01/2017/20130616-bash-scripting-eliminar-una-linea-de-un-archivo/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

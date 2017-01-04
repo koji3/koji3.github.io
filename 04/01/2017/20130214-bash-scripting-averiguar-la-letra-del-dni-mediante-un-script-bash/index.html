@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: [Bash Scripting] Averiguar la letra del DNI mediante un script bashlink: http://jose-linares.com/bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/author: koji3description:post_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jose-Linares.com">
+<meta property="og:url" content="http://jose-linares.com/04/01/2017/20130214-bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="title: [Bash Scripting] Averiguar la letra del DNI mediante un script bashlink: http://jose-linares.com/bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/author: koji3description:post_">
+<meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2013/02/Captura-de-pantalla-de-2013-02-14-103842.png">
+<meta property="og:updated_time" content="2017-01-04T10:54:02.243Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jose-Linares.com">
+<meta name="twitter:description" content="title: [Bash Scripting] Averiguar la letra del DNI mediante un script bashlink: http://jose-linares.com/bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/author: koji3description:post_">
+<meta name="twitter:image" content="http://jose-linares.com/wp-content/uploads/2013/02/Captura-de-pantalla-de-2013-02-14-103842.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-20130214-bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>title: [Bash Scripting] Averiguar la letra del DNI mediante un script bash<br>link: <a href="http://jose-linares.com/bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/">http://jose-linares.com/bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/</a><br>author: koji3<br>description:<br>post_id: 341<br>created: 2013/02/14 09:36:04<br>created_gmt: 2013/02/14 09:36:04<br>comment_status: open<br>post_name: bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash<br>status: publish<br>post_type: post</p>
+<h1 id="Bash-Scripting-Averiguar-la-letra-del-DNI-mediante-un-script-bash"><a href="#Bash-Scripting-Averiguar-la-letra-del-DNI-mediante-un-script-bash" class="headerlink" title="[Bash Scripting] Averiguar la letra del DNI mediante un script bash"></a>[Bash Scripting] Averiguar la letra del DNI mediante un script bash</h1><p>Otra entrega de los mini-tutoriales de programación bash! Este es un ejemplo bastante más simple que el anterior, pero como no van ordenados según dificultad, sino según se me van ocurriendo pues me lo perdonáis. Este tuto nos va a enseñar a sacar la letra del NIF a partir de un DNI pasado por parámetro. No es dificil, pero antes hay que saber la teoría sobre como se averigua esta letra. La letra del DNI se obtiene haciendo el módulo 23 del DNI (Esto es, dividir entre 23 y quedarse con el resto) y luego se ve la asignación del número resultante con la letra en la siguiente tabla (Extraída de Wikibooks): <img src="/wp-content/uploads/2013/02/Captura-de-pantalla-de-2013-02-14-103842.png" alt="Captura de pantalla de 2013-02-14 10:38:42"> Ahora vamos con el código, muy facilito de entender: </p>
+<pre><code>#!/bin/bash
+
+#Guardamos el módulo 23 del DNI (pasado por parámetro) en la variable $modulo
+modulo=$1%23
+
+#Asignamos cada número a su letra correspondiente siguiendo la tabla en un array $letra
+letra[0]=T
+letra[1]=R
+letra[2]=W
+letra[3]=A
+letra[4]=G
+letra[5]=M
+letra[6]=Y
+letra[7]=F
+letra[8]=P
+letra[9]=D
+letra[10]X
+letra[11]=B
+letra[12]=N
+letra[13]=J
+letra[14]=Z
+letra[15]=S
+letra[16]=Q
+letra[17]=V
+letra[18]=H
+letra[19]=L
+letra[20]=C
+letra[21]=K
+letra[22]=E
+#En la tabla hay 23 campos (del 0 al 22) porque el modulo 23 de cualquier número siempre nos da un numero mayor de -1 y menor que 23 
+
+#Mostramos la letra resultante por pantalla
+echo ${letra[$modulo]}
+</code></pre><p>Para probarlo, abrimos un terminal en la carpeta donde lo hayamos guardado y ejecutamos: <code>bash ScriptDNI.sh 57849625</code> Lo que dará de resultado: W Si tenéis algún problema, comentadlo :D</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#27" title="2013-03-30 23:16:22">sushisan</a>:</strong> La lista se puede cargar de una sola vez: letra=(T R W A G M Y F P D X B N J Z S Q V H L C K E) Saludos</p>
+<p><strong><a href="#28" title="2013-04-08 19:26:14">koji3</a>:</strong> Muy cierto Sushisan! De este modo ahorramos muchas líneas de código y mucha redundancia. Gracias por tu aporte!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/04/01/2017/20130214-bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/" class="article-date">
+  <time datetime="2017-01-04T22:11:59.596Z" itemprop="datePublished">04/01/2017</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/04/01/2017/20130211-bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/04/01/2017/20130207-error-sox-fail-formats-no-handler-for-file-extension-mp3-como-solucionarlo/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

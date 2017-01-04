@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: [Bash Scripting] Crear un tono de despertador personalizado para cada díalink: http://jose-linares.com/bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/author: koji3descr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jose-Linares.com">
+<meta property="og:url" content="http://jose-linares.com/04/01/2017/20130211-bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="title: [Bash Scripting] Crear un tono de despertador personalizado para cada díalink: http://jose-linares.com/bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/author: koji3descr">
+<meta property="og:image" content="http://www.lacoctelera.com/myfiles/anilusion/despertador-homero.jpg">
+<meta property="og:updated_time" content="2017-01-04T10:54:02.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jose-Linares.com">
+<meta name="twitter:description" content="title: [Bash Scripting] Crear un tono de despertador personalizado para cada díalink: http://jose-linares.com/bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/author: koji3descr">
+<meta name="twitter:image" content="http://www.lacoctelera.com/myfiles/anilusion/despertador-homero.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-20130211-bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>title: [Bash Scripting] Crear un tono de despertador personalizado para cada día<br>link: <a href="http://jose-linares.com/bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/">http://jose-linares.com/bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/</a><br>author: koji3<br>description:<br>post_id: 322<br>created: 2013/02/11 22:24:31<br>created_gmt: 2013/02/11 22:24:31<br>comment_status: open<br>post_name: bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia<br>status: publish<br>post_type: post</p>
+<h1 id="Bash-Scripting-Crear-un-tono-de-despertador-personalizado-para-cada-dia"><a href="#Bash-Scripting-Crear-un-tono-de-despertador-personalizado-para-cada-dia" class="headerlink" title="[Bash Scripting] Crear un tono de despertador personalizado para cada día"></a>[Bash Scripting] Crear un tono de despertador personalizado para cada día</h1><p>Este post es algo largo, pero quería dejar constancia de el potencial que tienen nuestros aparatos de uso cotidiano (ordenador o móvil) y lo desperdiciados que los tenemos por no saber usar las herramientas adecuadas. Os voy a mostrar como podemos hacer que nuestro ordenador genere cada día un tono de despertador y que nos suene en el móvil a la hora deseada. Antes de empezar, unos avisos: </p>
+<ol>
+<li>A la primera no va a salir, pero no os desaniméis</li>
+<li>Esta forma no es eficiente, pero es sencilla y cualquier persona sin grandes conocimientos puede  llevarla a cabo</li>
+<li><p>Si eres Cubero, mi antiguo profesor de programación, no sigas leyendo. El código tiene muchísimos defectos de formato que me harían suspender la asignatura que aprobé tiempo atrás.<br><img src="http://www.lacoctelera.com/myfiles/anilusion/despertador-homero.jpg" alt=""> Dicho esto, empezamos. Antes de nada, voy a hacer un resumen de lo que queremos conseguir: </p>
+</li>
+<li><p>Generar un mp3 que nos despierte con el mensaje que queramos, la hora, la temperatura actual y las temperaturas máxima y mínima de hoy. Se pueden añadir todos los mensajes que se quieran.</p>
+</li>
+<li>Subirlo automáticamente a un servidor FTP. Hace falta tener uno. Además de para esto, tener un servidor propio es bastante aconsejable y no son muy caros. Si no queréis contratar uno, hay algunos gratuitos.</li>
+<li>Configurarlo para que se ejecute los días y las horas a las que quieres que suene.</li>
+<li>Configurar tu móvil Android para descargar todas las mañanas el mp3 resultante(opcional, puedes hacer que suene desde el ordenador)</li>
+<li>Configurar el despertador.<br>Manos a la obra: Nos creamos un script con gedit o con tu editor de texto favorito. Después del #!/bin/bash de rigor, vamos a descargarnos los datos de la temperatura desde Yahoo, pues tiene una API gratuita y bastante resultona. Esto lo hacemos con el código: </li>
+</ol>
+<pre><code>curl --silent &quot;http://xml.weather.yahoo.com/forecastrss?w=761766&amp;u=c&quot; &gt; tiempo
+</code></pre><p>Ten en cuenta que el código 761766 corresponde a Granada, España. Si estás en otra ciudad tienes que cambiarlo. Puedes consultar tu código aqui: <a href="http://es.tiempo.yahoo.com" target="_blank" rel="external">http://es.tiempo.yahoo.com</a> . Una vez encuentres tu ciudad, el código lo tienes en la URL, por ejemplo: <a href="http://es.tiempo.yahoo.com/espa%C3%B1a/andaluc%C3%ADa/granada-761766/" target="_blank" rel="external">http://es.tiempo.yahoo.com/espa%C3%B1a/andaluc%C3%ADa/granada-761766/</a> Otra idea que se me ocurre, sería descargar las noticias del día por RSS, los últimos tweets, lo correos electrónicos nuevos, los asuntos que tengamos planeados en Google Calendar,… en fin, esto ya lo dejo a vuestra imaginación. Una vez que tenemos los datos, creamos las cadenas de texto que luego pasaremos a mp3. En mi caso quedan así: </p>
+<pre><code>saludo=&quot;Buenos días Jose. Despierta que es de día!&quot;
+hora=&quot;$(date +%I) y $(date +%M)&quot;
+cadena1=$(echo La temperatura actual en Granada es de $(grep &apos;yweather:condition&apos; tiempo | head -1 | cut -d\&quot; -f6)ºC.) 
+cadena2=$(echo La temperatura mínima de hoy es de $(grep &apos;yweather:forecast&apos; tiempo | head -1 | cut -d\&quot; -f6)ºC) 
+cadena3=$(echo Y la máxima será de $(grep &apos;yweather:forecast&apos; tiempo | head -1 | cut -d\&quot; -f8)ºC)
+</code></pre><p>Esto almacena en la variable <strong>saludo</strong> una frase estándar que sonará siempre. Luego guarda en la variable <strong>hora</strong> la hora a la que se ejecuta; y en las otras 3 variables, la temperatura máxima, mínima y actual, buscando en el archivo que nos bajamos al principio y recortando con cut para quedarnos con el trozo que nos interesa. Si vamos a usar mas datos, se meterían aquí. Ahora vamos a convertirlo a mp3. Para ello vamos a usar el traductor de Google. Es un método un poco rudimentario, pues no está pensado para este propósito y no acepta cadenas de texto excesivamente largas (ojo con esto) pero el resultado de voz es de lo mejorcito que hay. También se podría hacer con el programa “espeak” pero cada vez que te despiertes pensarás que ha habido una invasión robot, pues el resultado no queda muy humano. El código sería, mas o menos este: </p>
+<pre><code>wget -F -U &quot;Mozilla/5.0 (X11; U; Linux x86_64; pl-PL; rv:2.0) Gecko/20110307 Firefox/4.0&quot; &quot;http://translate.google.com/translate_tts?tl=es&amp;q=&apos;$saludo&apos;&quot; -O saludo.mp3;
+wget -F -U &quot;Mozilla/5.0 (X11; U; Linux x86_64; pl-PL; rv:2.0) Gecko/20110307 Firefox/4.0&quot; &quot;http://translate.google.com/translate_tts?tl=es&amp;q=&apos;$hora&apos;&quot; -O hora.mp3;
+wget -F -U &quot;Mozilla/5.0 (X11; U; Linux x86_64; pl-PL; rv:2.0) Gecko/20110307 Firefox/4.0&quot; &quot;http://translate.google.com/translate_tts?tl=es&amp;q=&apos;$cadena1&apos;&quot; -O cadena1.mp3;
+wget -F -U &quot;Mozilla/5.0 (X11; U; Linux x86_64; pl-PL; rv:2.0) Gecko/20110307 Firefox/4.0&quot; &quot;http://translate.google.com/translate_tts?tl=es&amp;q=&apos;$cadena2&apos;&quot; -O cadena2.mp3;
+wget -F -U &quot;Mozilla/5.0 (X11; U; Linux x86_64; pl-PL; rv:2.0) Gecko/20110307 Firefox/4.0&quot; &quot;http://translate.google.com/translate_tts?tl=es&amp;q=&apos;$cadena3&apos;&quot; -O cadena3.mp3
+</code></pre><p>Le pasamos la cadena al traductor, y guardamos el resultado en mp3. Ahora, mediante sox, unimos todos los mp3 generados en uno nuevo llamado despertador.mp3 asi: </p>
+<pre><code>sox saludo.mp3 hora.mp3 cadena1.mp3 cadena2.mp3 cadena3.mp3 despertador.mp3
+</code></pre><p>Si sox te da un error en el formato, pásate por este post que te digo como se arregla: <a href="http://jose-linares.com/error-sox-fail-formats-no-handler-for-file-extension-mp3-como-solucionarlo/">http://jose-linares.com/error-sox-fail-formats-no-handler-for-file-extension-mp3-como-solucionarlo/</a> (opcional)Podemos cambiar las etiquetas ID3 del mp3 resultante para que nos sea más fácil de encontrar luego: </p>
+<pre><code>id3v2 -a&quot;Artista&quot; -t&quot;Titulo&quot; despertador.mp3
+</code></pre><p>Con esto, ya tendríamos la base terminada. Pasamos al segundo paso: Subirlo a nuestro servidor ftp. Para esto vamos a usar wput. Creo que no viene instalado de primeras en ninguna distribución, así que hacemos un yum o un apt-get y lo instalamos. Ahora hacemos: </p>
+<pre><code>wput despertador.mp3 ftp://USUARIO:PASS@123.123.123.123:1234 /despertador/
+</code></pre><p>Cambiando Usuario y pass por lo que corresponda, 123.123.123.123 por la IP del server y el 1234 por el puerto, así como el directorio donde se subirá (en este caso a despertador) Luego borramos todos los archivos que hemos usado, para no ir acumulando basurilla poco a poco: </p>
+<pre><code>rm saludo.mp3 cadena1.mp3 cadena2.mp3 cadena3.mp3 despertador.mp3 hora.mp3 tiempo
+</code></pre><p>Una vez hecho esto, vamos a hacer una tarea cron para ejecutarlo de lunes a viernes a las 8 (por ejemplo). </p>
+<pre><code>0 8 * * 1-5 bash /home/joselito/scripts/despertador
+</code></pre><p>(modificar a gusto del consumidor) Ok, a partir de ahora, todos los días de Lunes a Viernes a las 8 y unos minutos, tendremos un mp3 esperándonos en nuestro servidor FTP. Ahora nos bajamos <a href="https://play.google.com/store/apps/details?id=com.botsync" target="_blank" rel="external">BotSync</a> desde Google Play. Esta aplicación nos permite sincronizar una carpeta por ftp cada cierto tiempo. Lo configuramos correctamente (no es difícil)  y establecemos la melodía del despertador a esa que nos acabamos de bajar. Como esta canción no cambia de nombre, la aplicación del despertador siempre la encuentra y no nos quedaremos dormidos (En caso de que se nos haya caído internet, nos levantaremos con la del día anterior). Si en vez de en el movil prefieres que suene en el ordenador directamente, es fácil: añade al final del script una llamada a mplayer: </p>
+<pre><code>mplayer despertador.mp3
+</code></pre><p>Os dejo el código completo, por si os habéis perdido o no tenéis ganas de programar nada: </p>
+<pre><code>#!/bin/bash
+
+#Programado por Jose Linares (http://jose-linares.com)
+#Basado en el trabajo de Juan Mol y Rumoku
+
+#Descargo datos de Yahoo Weather
+curl --silent &quot;http://xml.weather.yahoo.com/forecastrss?w=761766&amp;u=c&quot; &gt; tiempo
+#Creo las cadenas con frases. No pueden ser largas o sino no funcionan debido a la longitud de cabecera.
+saludo=&quot;Buenos días Jose. Despierta que es de día!&quot;
+hora=&quot;$(date +%I) y $(date +%M)&quot;
+</code></pre><h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#146" title="2013-07-26 06:47:49">Rubén López</a>:</strong> Esta bien ese script! Tanto, qye me suena mucho… anda! Claro, de un blig de Raspberry. Podrias como minimo poner de donde li has sacado y dar las gracias, no? Bueno. Es cierto que tu pusiste lo del ftp y Rumoku puso lo del weather yahoo. Pero no esta de mas dar las gracias.</p>
+<p><strong><a href="#148" title="2013-07-26 09:04:46">Jose Linares Rojas</a>:</strong> Hola Rubén, la verdad es que me basé en varias fuentes, y la idea del despertador ya la tuvo alguien. Suelo especificar la fuente de donde saco el contenido ( De hecho en el script pone “basado en el trabajo de Juan Mol”), pero si me pasas un enlace del blog que me comentas lo añado inmediatamente. Un saludo y gracias por tu visita ;)</p>
+<p><strong><a href="#197" title="2013-08-08 08:01:04">Rubén López</a>:</strong> Es cierto! No vi que si haces scroll, ahi escondidito sale basado en el trabajo de Juan Mol Es cierto. El post es como sabras este, pero la gran parte que has copiado no es de Juan Mol sino del comentario de Rumoku. Has dejado hadta el “despierta que es de dia!”. Celebro wue te sirviera, pero es de bien nacido ser agradecido y deberias añadir a Rumoku en esas “gratitudes” que saken si haces scroll d</p>
+<p><strong><a href="#198" title="2013-08-08 08:03:20">Rubén López</a>:</strong> Olvidé pegar link por si alguien le interesa ver el original y vea si es cierto lo que digo. <a href="http://rsppi.blogspot.com.es/2012/06/generador-mp3-para-despertador.html?m=1" target="_blank" rel="external">http://rsppi.blogspot.com.es/2012/06/generador-mp3-para-despertador.html?m=1</a></p>
+<p><strong><a href="#201" title="2013-08-10 09:46:09">Jose Linares Rojas</a>:</strong> Gracias por el enlace, tienes razón. Ya he añadido la fuente. Una saludo ;)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/04/01/2017/20130211-bash-scripting-crear-un-tono-de-despertador-personalizado-para-cada-dia/" class="article-date">
+  <time datetime="2017-01-04T22:11:59.596Z" itemprop="datePublished">04/01/2017</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/04/01/2017/20130217-bash-script-mejorando-nuestro-despertador/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/04/01/2017/20130214-bash-scripting-averiguar-la-letra-del-dni-mediante-un-script-bash/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

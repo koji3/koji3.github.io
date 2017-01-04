@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: Sincronización y respaldo de datos en linux con rsynclink: http://jose-linares.com/sincronizacion-y-respaldo-de-datos-en-linux-con-rsync/author: koji3description:post_id: 651created: 2013/09/15">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jose-Linares.com">
+<meta property="og:url" content="http://jose-linares.com/04/01/2017/20130915-sincronizacion-y-respaldo-de-datos-en-linux-con-rsync/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="title: Sincronización y respaldo de datos en linux con rsynclink: http://jose-linares.com/sincronizacion-y-respaldo-de-datos-en-linux-con-rsync/author: koji3description:post_id: 651created: 2013/09/15">
+<meta property="og:image" content="http://backupvalencia.es/sistema-backup-online/valencia/imagenes/backup1.png">
+<meta property="og:updated_time" content="2017-01-04T10:54:02.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jose-Linares.com">
+<meta name="twitter:description" content="title: Sincronización y respaldo de datos en linux con rsynclink: http://jose-linares.com/sincronizacion-y-respaldo-de-datos-en-linux-con-rsync/author: koji3description:post_id: 651created: 2013/09/15">
+<meta name="twitter:image" content="http://backupvalencia.es/sistema-backup-online/valencia/imagenes/backup1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-20130915-sincronizacion-y-respaldo-de-datos-en-linux-con-rsync" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>title: Sincronización y respaldo de datos en linux con rsync<br>link: <a href="http://jose-linares.com/sincronizacion-y-respaldo-de-datos-en-linux-con-rsync/">http://jose-linares.com/sincronizacion-y-respaldo-de-datos-en-linux-con-rsync/</a><br>author: koji3<br>description:<br>post_id: 651<br>created: 2013/09/15 10:52:51<br>created_gmt: 2013/09/15 10:52:51<br>comment_status: open<br>post_name: sincronizacion-y-respaldo-de-datos-en-linux-con-rsync<br>status: publish<br>post_type: post</p>
+<h1 id="Sincronizacion-y-respaldo-de-datos-en-linux-con-rsync"><a href="#Sincronizacion-y-respaldo-de-datos-en-linux-con-rsync" class="headerlink" title="Sincronización y respaldo de datos en linux con rsync"></a>Sincronización y respaldo de datos en linux con rsync</h1><p>Se por experiencia propia que hacer copia de seguridad de nuestros datos es una buena idea. Últimamente vengo usando<strong> rsync</strong> para hacer el respaldo. Hoy os voy a enseñar el potencial de este programa. <img src="http://backupvalencia.es/sistema-backup-online/valencia/imagenes/backup1.png" alt=""> Primero instalamos el paquete <strong>rsync</strong> con rpm o apt-get, según la distribución que uses. Luego, para utilizarlo simplemente: </p>
+<pre><code>$ rsync -av ORIGEN DESTINO
+</code></pre><p>La opción <strong>-a</strong>, preserva los permisos, los tiempos de modificación, hace la sincronización recursiva,… Y la opción <strong>-v</strong> hace que el programa muestre todos los detalles de la operación. El programa tiene muchas más opciones, consultad el <strong>--help</strong> o el<strong> man</strong> para verlas todas. Para recuperar el respaldo cuando haga falta, simplemente se intercambia el origen y el destino. Para darle un uso más práctico a esto, se me ocurre hacer un <strong>alias</strong> o programarlo con <strong>cron</strong> cuando más convenga. Espero que sea de utilidad y os recuerdo: Comentar es gratis :D <a href="http://etccrond.blogspot.com.es/2013/09/respaldar-datos-linux-facilmente.html" target="_blank" rel="external">Fuente</a></p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#232" title="2013-09-16 10:05:24">José Luis</a>:</strong> ¿Y un pen, no vale? :-). Saludos Linuxeros.</p>
+<p><strong><a href="#233" title="2013-09-16 11:57:17">Jose Linares Rojas</a>:</strong> Por supuesto, vale cualquier soporte</p>
+<p><strong><a href="#257" title="2013-10-11 04:43:20">Charly</a>:</strong> Interesante, espero poder aplicarlo!!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/04/01/2017/20130915-sincronizacion-y-respaldo-de-datos-en-linux-con-rsync/" class="article-date">
+  <time datetime="2017-01-04T22:11:59.614Z" itemprop="datePublished">04/01/2017</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/04/01/2017/20130916-introduccion-al-bash-scripting-3a-clase/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/04/01/2017/20130914-sincronizacion-multiplataforma-con-bittorrent-sync/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

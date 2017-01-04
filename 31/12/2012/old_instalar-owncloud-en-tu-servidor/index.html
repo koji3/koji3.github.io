@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Instalar OwnCloud en tu servidor | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Owncloud es un sistema parecido a Dropbox que sirve para almacenar tus archivos en la nube y acceder a ellos de una forma sencilla. La gran desventaja con respecto a Dropbox es el hecho de que no tien">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Instalar OwnCloud en tu servidor">
+<meta property="og:url" content="http://jose-linares.com/31/12/2012/old_instalar-owncloud-en-tu-servidor/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="Owncloud es un sistema parecido a Dropbox que sirve para almacenar tus archivos en la nube y acceder a ellos de una forma sencilla. La gran desventaja con respecto a Dropbox es el hecho de que no tien">
+<meta property="og:image" content="http://www.muylinux.com/wp-content/uploads/2012/05/owncloud-4.jpg">
+<meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2012/12/Captura-de-pantalla-de-2012-12-31-132352.png">
+<meta property="og:updated_time" content="2017-01-04T22:12:11.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Instalar OwnCloud en tu servidor">
+<meta name="twitter:description" content="Owncloud es un sistema parecido a Dropbox que sirve para almacenar tus archivos en la nube y acceder a ellos de una forma sencilla. La gran desventaja con respecto a Dropbox es el hecho de que no tien">
+<meta name="twitter:image" content="http://www.muylinux.com/wp-content/uploads/2012/05/owncloud-4.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_instalar-owncloud-en-tu-servidor" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Instalar OwnCloud en tu servidor
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Owncloud es un sistema parecido a Dropbox que sirve para almacenar tus archivos en la nube y acceder a ellos de una forma sencilla. La gran desventaja con respecto a Dropbox es el hecho de que no tiene sincronización con carpetas locales (de momento). Sin embargo tiene varias ventajas como que no tienes límite de almacenamiento(puedes usar todo el disponible en tu hosting o en tu pc) y es open source, por lo que irá mejorando rápidamente. Además, tiene una versión temprana de una aplicación para Android. <img src="http://www.muylinux.com/wp-content/uploads/2012/05/owncloud-4.jpg" alt=""> Para instalarlo en tu servidor de hosting, primero necesitas descargarlo desde aqui: <a href="http://owncloud.org/support/install/" target="_blank" rel="external">http://owncloud.org/support/install/</a> . Luego descomprimes el .tar y subes la carpeta entera mediante tu programa FTP favorito (recomiendo filezilla) a tu server. Mientras se sube, ve a por un café, pasea al perro o llama a tu madre. Son muchos archivos y va a tardar un rato. Pero para no teneros aburridos, mientras tanto vamos a instalar el cliente para sincronizar archivos. En mi caso lo voy a hacer en Fedora, pero también está disponible para CentOS, Ubuntu, OpenSUSE y Debian, así como para Windows y Mac. Si tu intención es instalarlo en un Windows aquí no vas a encontrar respuestas a tus preguntas, vete a un foro o a otro blog, gracias. Si por el contrario quieres instalarlo en linux, es muy sencillo: </p>
+<ol>
+<li>Ve a esta página: <a href="http://software.opensuse.org/download/package?project=isv:ownCloud:devel&amp;package=owncloud-client" target="_blank" rel="external">http://software.opensuse.org/download/package?project=isv:ownCloud:devel&amp;package=owncloud-client</a></li>
+<li>Selecciona tu distro; en mi caso, Fedora</li>
+<li>Logueate en el terminal como root (comando su + tu pass)</li>
+<li>introduce los comandos que te indican<br>Cuando acabemos de instalarlo, ya habrá acabado todo de subirse, podremos continuar. Accedemos por el navegador a la carpeta donde lo hayamos metido. Por ejemplo: <a href="http://tu-server.com/owncloud" target="_blank" rel="external">http://tu-server.com/owncloud</a>. Nos aparecerán errores que hay que solucionar antes de seguir; la mayoría porque el servidor no tiene permisos de escritura en ciertos archivos. Lo solucionamos también por FTP y refrescamos. <img src="/wp-content/uploads/2012/12/Captura-de-pantalla-de-2012-12-31-132352.png" alt="Captura de pantalla de 2012-12-31 13:23:52">   Ahora nos pide un usuario y una contraseña, que será la que usaremos para acceder como admin; un directorio de almacenamiento, que puedes dejar el que viene por defecto; y los datos de la base de datos(valga la redundancia) que se supone que ya has creado. Si no sabes crear una base de datos, es simplemente acceder al PhpMyAdmin y crearla, hay miles de tutoriales en internet y no viene al caso así que no lo voy a explicar aquí. Hecho esto ya podrás subir tus archivos fácilmente. Y tenerlo todo centralizado. No ha sido tan difícil no? x) PD: El espacio por defecto para subir un archivo es 512 MB, es decir, medio giga. Para solucionar esto (Aumentar o disminuir esta cantidad dependiendo de tus necesidades) sólo tienes que modificar el archivo “php.ini” Que encontrarás en la carpeta /etc de tu server. PD2: Para más información aquí tenéis un buen post: <a href="http://www.mclibre.org/consultar/webapps/lecciones/webapps_owncloud_1.html" target="_blank" rel="external">http://www.mclibre.org/consultar/webapps/lecciones/webapps_owncloud_1.html</a></li>
+</ol>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#349" title="2014-05-31 12:50:50">BigByte</a>:</strong> Hola,al cabo de instalar owncloud en mi hosting. empece con 1.5 TB, cosa que me parecio guay, pero ahora mi espacio disminuye cada dia, hasta hoy que esta en 50 gb, de los cuales esta usado el 2%. ¿por que disminuye el espacio de almacenamto en el cloud? ¿habre hecho algo mal durante la instalación? por favor, contestame. gracias</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/31/12/2012/old_instalar-owncloud-en-tu-servidor/" class="article-date">
+  <time datetime="2012-12-31T18:01:16.000Z" itemprop="datePublished">31/12/2012</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/03/01/2013/old_star-wars-en-ascii-mediante-terminal/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Star Wars en Ascii mediante terminal
+        
+      </div>
+    </a>
+  
+  
+    <a href="/31/12/2012/old_como-instalar-tleds-en-fedora/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Cómo instalar Tleds en Fedora</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
