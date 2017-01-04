@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>\[ES\][Bash Scripting] Aprender zenity mientras programamos un descargador automático de torrents | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hoy vamos a aprender a hacer nuestros scripts bash más vistosos, implementándoles una pseudo-interfaz de usuario mediante zenity. Este programa nos proporciona diálogos muy variados: mensaje de advert">
+<meta property="og:type" content="article">
+<meta property="og:title" content="\[ES\][Bash Scripting] Aprender zenity mientras programamos un descargador automático de torrents">
+<meta property="og:url" content="http://jose-linares.com/20/02/2013/old_bash-scripting-aprender-zenity-mientras-programamos-un-descargador-automatico-de-torrents/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="Hoy vamos a aprender a hacer nuestros scripts bash más vistosos, implementándoles una pseudo-interfaz de usuario mediante zenity. Este programa nos proporciona diálogos muy variados: mensaje de advert">
+<meta property="og:image" content="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/The_Pirate_Bay_logo_bw.svg/529px-The_Pirate_Bay_logo_bw.svg.png">
+<meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2013/02/Captura-de-pantalla-de-2013-02-20-141358.png">
+<meta property="og:updated_time" content="2017-01-04T22:34:17.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="\[ES\][Bash Scripting] Aprender zenity mientras programamos un descargador automático de torrents">
+<meta name="twitter:description" content="Hoy vamos a aprender a hacer nuestros scripts bash más vistosos, implementándoles una pseudo-interfaz de usuario mediante zenity. Este programa nos proporciona diálogos muy variados: mensaje de advert">
+<meta name="twitter:image" content="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/The_Pirate_Bay_logo_bw.svg/529px-The_Pirate_Bay_logo_bw.svg.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_bash-scripting-aprender-zenity-mientras-programamos-un-descargador-automatico-de-torrents" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      \[ES\][Bash Scripting] Aprender zenity mientras programamos un descargador automático de torrents
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Hoy vamos a aprender a hacer nuestros scripts bash más vistosos, implementándoles una pseudo-interfaz de usuario mediante <strong>zenity</strong>. Este programa nos proporciona diálogos muy variados: mensaje de advertencia, barra de progreso, entrada de texto, selección de color, calendario,… y su uso es muy simple. </p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/The_Pirate_Bay_logo_bw.svg/529px-The_Pirate_Bay_logo_bw.svg.png" alt=""></p>
+<p>Para ilustraros como se hace, voy a poneros de ejemplo un descargador de torrents que acabo de programar. Se basa en transmission, The Pirate Bay y zenity. Está comentado para que lo podáis entender (muy penco todo, pero ese no es el objetivo, el objetivo es aprender <strong>zenity</strong>). Aquí tenéis el código: <a href="http://jose-linares.com/scripts/LuckyBay.sh">http://jose-linares.com/scripts/LuckyBay.sh</a> Para que funcione correctamente, debéis meter el archivo “categorias.txt” en el mismo directorio. Este archivo lo tenéis aquí: <a href="http://jose-linares.com/scripts/categorias.txt">http://jose-linares.com/scripts/categorias.txt</a> Como veis, hago unos pasos muy sencillos: </p>
+<ul>
+<li>Borro posibles archivos que quedaran de una ejecución anterior</li>
+<li>Pregunto al usuario lo que quiere bajar y si desea que sea automático o manual</li>
+<li>Si quiere búsqueda manual, le pregunto por la categoría (Esta parte hay que traducirla y mejorarla)</li>
+<li>Descargo la información de ThePirateBay y la organizo en una mini-base de datos. Para tener más clara esta parte os recomiendo que echéis un ojo al código</li>
+<li>En caso de selección manual muestro una lista de resultados ordenados por numero de Seeders</li>
+<li>Sino, descargo automáticamente el que más Seeders tenga (Normalmente, el que más seeders tiene, tiene menos posibilidades de ser Fake)</li>
+<li>Paso el enlace magnet a Transmission por medio de la interfaz remota (Tiene que estar activada)</li>
+<li>Borro los archivos utilizados<br>Una vez que ya sabemos como funciona el script vamos a lo que íbamos  explicar el uso de <strong>zenity</strong>. Para saber que quiere descargar el usuario uso el diálogo --entry de este modo: </li>
+</ul>
+<pre><code>descargar=$(zenity --entry --text=&quot;Introduce la película/serie/juego/disco que quieres descargar (Recuerda que solo funciona si tienes el Transmission abierto y la interfaz web activa)&quot;)
+</code></pre><p>La única opción que le paso es --text, que cambia el texto mostrado al usuario. El resultado se guarda en la variable $descargar para su uso posterior. Luego pregunto si quiere obtener el archivo automáticamente o seleccionarlo de una lista. Para ello utilizo el diálogo --question así: </p>
+<pre><code>zenity --question --text=&quot;Quieres seleccionar el archivo a mano o te fias de mi criterio?&quot; --ok-label &quot;Voy a tener suerte&quot; --cancel-label &quot;Buscar manualmente&quot;
+</code></pre><p>Y además de la opción --text que ya he explicado utilizo dos opciones más: --ok-label y --cancel-label que me permiten modificar el texto de los botones aceptar y cancelar respectivamente. Así los puedo utilizar para otras cosas y no solo “Acceptar” o “Cancelar” Ahora viene lo más difícil: el diálogo --list . Lo utilizo en dos partes del código: para elegir las categorías a buscar y para mostrar los resultados. Voy a explicar solo el primero y el segundo os lo dejo de deberes para casa: </p>
+<pre><code>categoria=$(zenity --list --width=400 --height=500 --checklist --separator=&quot;,&quot; --print-column=3 --title=&quot;Elige la categoría del Torrent&quot; --column=&quot;Selec.&quot; --column=&quot;Categoría&quot; --column=&quot;ID&quot; $(cat categorias.txt))
+</code></pre><p>En este diálogo uso más opciones: </p>
+<ul>
+<li>--title: Cambia el título de la ventana</li>
+<li>--width: Cambia la anchura</li>
+<li>--height: Cambia la altura</li>
+<li>--checklist: Indica que la primera columna va a estar reservada por los “checkdots”. De este modo podemos seleccionar más de una categoría.</li>
+<li>--separator: Cuando se seleccionan mas de 1 elementos, este campo indica con que caracter se separarán antes de ser devueltos (en este caso una coma)</li>
+<li>--print-column: columna que se devolverá. En nuestro caso necesitamos solamente el ID de la categoría así que devolvemos la tercera. Para devolver todas, se puede usar “all”</li>
+<li>--column: Titulo de cada columna, por orden. Hay que poner uno por cada columna.</li>
+<li>Por último hacemos un cat del archivo donde tenemos los datos ordenados.<br>Resultado: <img src="/wp-content/uploads/2013/02/Captura-de-pantalla-de-2013-02-20-141358.png" alt="Captura de pantalla de 2013-02-20 14:13:58">   En la página de Gnome tenéis un tutorial bastante resultón en el que se explican todas las opciones, pero no os extrañéis de que no funcionen los ejemplos, pues algunos están mal. Podéis encontrarlo aquí: <a href="http://help.gnome.org/users/zenity/stable/index.html.es" target="_blank" rel="external">http://help.gnome.org/users/zenity/stable/index.html.es</a></li>
+</ul>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p><strong><a href="#444" title="2016-01-31 04:10:26">Wuilmer Bolivar</a>:</strong> Con las opciones: –ok-label y –cancel-label puedes modificar los botones aceptar y cancelar, sin embargo es posible desactivar/eliminar el botón “cancelar”?</p>
+<p><strong><a href="#445" title="2016-01-31 10:07:03">Jose Linares Rojas</a>:</strong> Si, en vez de pasarle la opción –question, usa el parámetro –info que solo muestra un botón.</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/20/02/2013/old_bash-scripting-aprender-zenity-mientras-programamos-un-descargador-automatico-de-torrents/" class="article-date">
+  <time datetime="2013-02-20T12:18:09.000Z" itemprop="datePublished">20/02/2013</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/27/02/2013/old_instalar-f-lux-en-fedora-18/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          \[ES\]Instalar f.lux en Fedora 18
+        
+      </div>
+    </a>
+  
+  
+    <a href="/17/02/2013/old_bash-script-mejorando-nuestro-despertador/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">\[ES\][Bash Scripting] Mejorando nuestro despertador</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

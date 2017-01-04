@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>\[ES\][Bash Scripting] Operar con decimales en bash usando bc | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hoy os traigo un pequeño truco para trabajar con decimales en bash gracias a nuestro amigo bc. Si hacemos una operación no entera mediante las operaciones incluidas en bash así: 
+$ $((25.768/24))
+bash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="\[ES\][Bash Scripting] Operar con decimales en bash usando bc">
+<meta property="og:url" content="http://jose-linares.com/05/05/2014/old_bash-scripting-operar-con-decimales-en-bash-usando-bc/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="Hoy os traigo un pequeño truco para trabajar con decimales en bash gracias a nuestro amigo bc. Si hacemos una operación no entera mediante las operaciones incluidas en bash así: 
+$ $((25.768/24))
+bash">
+<meta property="og:updated_time" content="2017-01-04T22:34:17.615Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="\[ES\][Bash Scripting] Operar con decimales en bash usando bc">
+<meta name="twitter:description" content="Hoy os traigo un pequeño truco para trabajar con decimales en bash gracias a nuestro amigo bc. Si hacemos una operación no entera mediante las operaciones incluidas en bash así: 
+$ $((25.768/24))
+bash">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_bash-scripting-operar-con-decimales-en-bash-usando-bc" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      \[ES\][Bash Scripting] Operar con decimales en bash usando bc
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Hoy os traigo un pequeño truco para trabajar con decimales en bash gracias a nuestro amigo bc. Si hacemos una operación no entera mediante las operaciones incluidas en bash así: </p>
+<pre><code>$ $((25.768/24))
+bash: ((: 25.768/24: error sintáctico: operador aritmético inválido (el elemento de error es &quot;.768/24&quot;)
+</code></pre><p>nos dará un error. Y si lo hacemos con bc: </p>
+<pre><code>$ echo &apos;25.768/24&apos; | bc
+1
+</code></pre><p>Nos devolverá solamente la parte entera del resultado; en este caso 1. Para evitar este comportamiento debemos cambiar la precisión decimal de bc, que por defecto es 0, a la que deseemos mediante la variable ‘scale’: </p>
+<pre><code>$ echo &quot;scale = 10; 25.768/24&quot; | bc          # 10 decimales
+1.0736666666
+$ echo &quot;scale = 20; 25.768/24&quot; | bc          # 20 decimales
+1.07366666666666666666
+$ echo &quot;scale = 200; 25.768/24&quot; | bc          # 200 decimales
+1.073666666666666666666666666666666666666666666666666666666666666666\
+66666666666666666666666666666666666666666666666666666666666666666666\
+666666666666666666666666666666666666666666666666666666666666666666
+</code></pre><p>Como véis, se le puede pasar un número arbitrario de decimales.&gt; Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/05/05/2014/old_bash-scripting-operar-con-decimales-en-bash-usando-bc/" class="article-date">
+  <time datetime="2014-05-05T09:05:52.000Z" itemprop="datePublished">05/05/2014</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/23/05/2014/old_usar-y-automatizar-telegram-desde-terminal-en-linux/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          \[ES\]Usar y Automatizar Telegram desde Terminal en Linux
+        
+      </div>
+    </a>
+  
+  
+    <a href="/24/04/2014/old_bash-scripting-matrices-y-arrays-multidimensionales-en-bash/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">\[ES\][Bash Scripting] Matrices y arrays multidimensionales en bash</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

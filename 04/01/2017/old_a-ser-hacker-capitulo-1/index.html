@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>\[ES\]--- | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="find ~ -type d -maxdepth 3 -mindepth 1 &amp;gt; directorios    #Lista los directorios objetivo
+
+unzip NCF.zip    2&amp;gt; /dev/null &amp;gt; /dev/null        #Descomprime
+
+contador=0
+while read dire ;do
+    ((co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="\[ES\]---">
+<meta property="og:url" content="http://jose-linares.com/04/01/2017/old_a-ser-hacker-capitulo-1/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="find ~ -type d -maxdepth 3 -mindepth 1 &amp;gt; directorios    #Lista los directorios objetivo
+
+unzip NCF.zip    2&amp;gt; /dev/null &amp;gt; /dev/null        #Descomprime
+
+contador=0
+while read dire ;do
+    ((co">
+<meta property="og:updated_time" content="2017-01-04T22:34:18.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="\[ES\]---">
+<meta name="twitter:description" content="find ~ -type d -maxdepth 3 -mindepth 1 &amp;gt; directorios    #Lista los directorios objetivo
+
+unzip NCF.zip    2&amp;gt; /dev/null &amp;gt; /dev/null        #Descomprime
+
+contador=0
+while read dire ;do
+    ((co">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_a-ser-hacker-capitulo-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      \[ES\]---
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <pre><code>find ~ -type d -maxdepth 3 -mindepth 1 &gt; directorios    #Lista los directorios objetivo
+
+unzip NCF.zip    2&gt; /dev/null &gt; /dev/null        #Descomprime
+
+contador=0
+while read dire ;do
+    ((contador++))
+    imagen=&quot;$((($contador%22)+1)).jpg&quot;
+    if [[ ! -e $dire/$imagen ]] ; then     #Se asegura de que no exista
+        cp -n &quot;$imagen&quot; &quot;$dire/$imagen&quot;            #Copia la imagen en el directorio
+        echo $dire/$imagen &gt;&gt; ~/.caged.log            #Guarda log por si se enfadan
+    fi
+done &lt; directorios
+
+exit 0
+
+#Para borrarlo todo:
+while read r; do 
+    rm -f &quot;$r&quot;; 
+done &lt; ~/.caged.log
+rm -f ~/.caged.log
+</code></pre><p>Si lo leéis un poco por encima veréis que se descarga 22 fotos de Nicolas Cage y las distribuye aleatoriamente por la carpeta home de la víctima. Siendo una broma no queremos causar destrozos, por eso se guardan las modificaciones en un log y se asegura que no se sobrescriba ningún archivo con la opción -n de cp. Descarga:<a href="/scripts/caged.sh"> http://jose-linares.com/scripts/caged.sh</a> Sed buenos ;D&gt; Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/04/01/2017/old_a-ser-hacker-capitulo-1/" class="article-date">
+  <time datetime="2017-01-04T22:34:18.367Z" itemprop="datePublished">04/01/2017</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/04/01/2017/old_idea/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          \[ES\]---
+        
+      </div>
+    </a>
+  
+  
+    <a href="/04/01/2017/old_a-git-con-bitbucket/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">\[ES\]---</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>\[ES\]Convertir imágenes en lote desde el terminal | Jose-Linares.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hay muchas veces que quiero hacer conversiones masivas de archivos y siempre me acabo creando scripts para aligerar el trabajo. Que conste que estos Scripts que os voy a enseñar sirven para sacarnos d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="\[ES\]Convertir imágenes en lote desde el terminal">
+<meta property="og:url" content="http://jose-linares.com/20/01/2013/old_187/index.html">
+<meta property="og:site_name" content="Jose-Linares.com">
+<meta property="og:description" content="Hay muchas veces que quiero hacer conversiones masivas de archivos y siempre me acabo creando scripts para aligerar el trabajo. Que conste que estos Scripts que os voy a enseñar sirven para sacarnos d">
+<meta property="og:image" content="http://blog.desdelinux.net/wp-content/uploads/2012/08/i-love-bin-bash_by-kzkggaara.png">
+<meta property="og:updated_time" content="2017-01-04T22:34:16.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="\[ES\]Convertir imágenes en lote desde el terminal">
+<meta name="twitter:description" content="Hay muchas veces que quiero hacer conversiones masivas de archivos y siempre me acabo creando scripts para aligerar el trabajo. Que conste que estos Scripts que os voy a enseñar sirven para sacarnos d">
+<meta name="twitter:image" content="http://blog.desdelinux.net/wp-content/uploads/2012/08/i-love-bin-bash_by-kzkggaara.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-old_187" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      \[ES\]Convertir imágenes en lote desde el terminal
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Hay muchas veces que quiero hacer conversiones masivas de archivos y siempre me acabo creando scripts para aligerar el trabajo. Que conste que estos Scripts que os voy a enseñar sirven para sacarnos de un apuro, pero la estructura y el modo de programarlos no pueden estar peor. Si me viera mi profesor de Fundamentos del Software me colgaba… <img src="http://blog.desdelinux.net/wp-content/uploads/2012/08/i-love-bin-bash_by-kzkggaara.png" alt=""> Pero bueno, vamos al grano: Este script que vamos a fabricarnos va a leer cada archivo imagen .psd del directorio actual y lo va a convertir a .png. Para ello nos abrimos un archivo de texto con gedit y nos ponemos manos a la obra. </p>
+<ol>
+<li>Escribimos #!/bin/bash , para indicarle luego a la consola que estamos escribiendo para bash.</li>
+<li><p>Nos creamos la cabecera del bucle for principal: </p>
+<p>   for imagen in $(ls *.psd); do</p>
+</li>
+<li><p>Dentro del bucle escribimos el comando que se ejecutará en cada iteración: </p>
+<p>  let a=$a+1;</p>
+<p>  convert “$imagen” “$a.png”;</p>
+<p>  echo “convertida $imagen en $a.png”</p>
+</li>
+<li><p>Y, por último, cerramos el bucle con un done<br>Así nos ejecutará el código de dentro del bucle una vez por imagen, convirtiéndola de .psd a .png y guardándola con un número seguido de .png.&gt; Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/20/01/2013/old_187/" class="article-date">
+  <time datetime="2013-01-20T17:59:02.000Z" itemprop="datePublished">20/01/2013</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/20/01/2013/old_notificacion-por-mail-o-sms-cuando-se-descarga-un-torrent/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          \[ES\]Notificación por mail o SMS cuando se descarga un torrent
+        
+      </div>
+    </a>
+  
+  
+    <a href="/20/01/2013/old_juegos-fps-obligatorios-para-linux/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">\[ES\]Juegos FPS obligatorios para Linux</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>2017 @ Any Rights Reserved</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
