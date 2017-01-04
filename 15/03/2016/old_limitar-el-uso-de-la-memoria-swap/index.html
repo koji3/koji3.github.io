@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://jose-linares.com/15/03/2016/old_limitar-el-uso-de-la-memoria-swap/index.html">
 <meta property="og:site_name" content="Jose-Linares.com">
 <meta property="og:description" content="La memoria de intercambio o swap es útil en aquellos ordenadores con una memoria RAM limitada. Sin embargo en máquinas modernas con 4GB de memoria o más también suele estar presente. Su funcionamiento">
-<meta property="og:updated_time" content="2017-01-04T22:34:17.681Z">
+<meta property="og:updated_time" content="2017-01-04T22:42:05.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="\[ES\]Limitar el uso de la memoria SWAP">
 <meta name="twitter:description" content="La memoria de intercambio o swap es útil en aquellos ordenadores con una memoria RAM limitada. Sin embargo en máquinas modernas con 4GB de memoria o más también suele estar presente. Su funcionamiento">
@@ -68,7 +68,10 @@
 <pre><code>sudo sysctl -w vm.swappiness=10
 </code></pre><p>Una vez hecho esto, podemos probar el rendimiento del sistema durante un tiempo para ver si mejora o no. Si estamos contentos con el cambio (ya os adelanto que lo estaréis) podemos hacerlo permanente modificando el archivo de configuración de sysctl: </p>
 <pre><code>su -c &quot;echo &apos;vm.swappiness=10&apos; &gt;&gt; /etc/sysctl.conf&quot;
-</code></pre><p><a href="http://geekland.eu/optimizar-el-uso-de-la-memoria-swap/" target="_blank" rel="external">Fuente</a>&gt; Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</code></pre><p><a href="http://geekland.eu/optimizar-el-uso-de-la-memoria-swap/" target="_blank" rel="external">Fuente</a></p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
 
       
     </div>

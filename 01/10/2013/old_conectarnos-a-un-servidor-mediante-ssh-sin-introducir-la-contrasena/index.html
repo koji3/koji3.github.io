@@ -13,7 +13,7 @@
 <meta property="og:description" content="Si siempre nos vamos a conectar mediante ssh al servidor desde el mismo ordenador (o la mayoría de las veces) podemos establecer una configuración adicional para que solo nos pida la contraseña una p">
 <meta property="og:image" content="http://2.bp.blogspot.com/-WH4msmSBpLk/USyNgurM0KI/AAAAAAAAAw4/Tdr4u0Ckuls/s1600/SSH_logo.png">
 <meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2013/10/Captura-de-pantalla-de-2013-09-29-164218.png">
-<meta property="og:updated_time" content="2017-01-04T22:34:17.434Z">
+<meta property="og:updated_time" content="2017-01-04T22:42:04.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="\[ES\]Conectarnos a un servidor mediante SSH sin introducir la contraseña">
 <meta name="twitter:description" content="Si siempre nos vamos a conectar mediante ssh al servidor desde el mismo ordenador (o la mayoría de las veces) podemos establecer una configuración adicional para que solo nos pida la contraseña una p">
@@ -70,7 +70,10 @@
 <pre><code>ssh-keygen -b 4096 -t rsa
 </code></pre><p>Luego nos preguntará varias cosas. Solo pulsamos <strong>enter</strong> sin escribir nada, un total de tres veces ( A no ser que queramos cambiar el directorio donde lo guarda o establecer una contraseña). Al final nos devolverá algo parecido a esto: <img src="/wp-content/uploads/2013/10/Captura-de-pantalla-de-2013-09-29-164218.png" alt="Captura de pantalla de 2013-09-29 16:42:18"> Una vez tenemos la clave generada, se la tenemos que dar al servidor remoto, de este modo: </p>
 <pre><code>ssh-copy-id user_remoto@12.34.56.78
-</code></pre><p>(teniendo en cuenta que la ip del server es 12.34.56.78 y el usuario es user_remoto) Una vez introducida la contraseña que nos pide, el servidor ya tiene la llave pública de la máquina local. Ahora, probamos a conectarnos a la máquina remota normalmente y vemos que no nos pide ningún password.&gt; Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</code></pre><p>(teniendo en cuenta que la ip del server es 12.34.56.78 y el usuario es user_remoto) Una vez introducida la contraseña que nos pide, el servidor ya tiene la llave pública de la máquina local. Ahora, probamos a conectarnos a la máquina remota normalmente y vemos que no nos pide ningún password.</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
 
       
     </div>

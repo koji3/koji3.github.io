@@ -13,7 +13,7 @@
 <meta property="og:description" content="(Tutorial realizado para la auditoría de tu propia red wifi. Úsalo solamente para comprobar si tu red es segura. Entrar en redes wifi ajenas es delito) Antes de empezar con el tutorial voy a partir de">
 <meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2013/01/Captura-de-pantalla-de-2013-01-25-164258.png">
 <meta property="og:image" content="http://jose-linares.com/wp-content/uploads/2013/01/Captura-de-pantalla-de-2013-01-25-165500.png">
-<meta property="og:updated_time" content="2017-01-04T22:34:17.059Z">
+<meta property="og:updated_time" content="2017-01-04T22:42:04.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="\[ES\]Como averiguar contraseña de una red Wifi WEP">
 <meta name="twitter:description" content="(Tutorial realizado para la auditoría de tu propia red wifi. Úsalo solamente para comprobar si tu red es segura. Entrar en redes wifi ajenas es delito) Antes de empezar con el tutorial voy a partir de">
@@ -106,7 +106,10 @@ make install
 <pre><code>airodump -c 11 --bssid BSSID -w archivo wlan
 </code></pre><p>De este modo solo capturará paquetes en el canal 11 del AP BSSID (cambiar según tu caso). Todos los datos los guardará en “archivo”. Una vez tengamos un numero considerable de datos de la red, como 100000 o así, podemos intentar averiguar la contraseña con el comando: </p>
 <pre><code>aircrack-ng -b BSSID archivo.cap
-</code></pre><p>Si tienes varios archivos .cap, puedes ponerlos todos separados de espacios. Al hacer esto, nuestro PC empezará a sacar la contraseña y te la mostrará. Si la red tiene poco tráfico, puede llevarte mucho tiempo conseguir ese número de paquetes. En otro post pondré como hacer que el número de paquetes suba más rápido con inyección de paquetes. Tener 100000 paquetes no te asegura que se vaya a sacar la pass. A veces es suficiente con menos, otras veces se necesitan más, eso es cuestión de suerte. Además, si durante el proceso se ha cambiado la contraseña no se sacará nunca. Pero eso no es problema porque en tu propia red sabes cuando se cambia la pass. Como véis, para tener una red segura, lo más improtante es tener una seguridad WPA. El filtrado de mac también ayuda, pero no es nada seguro, pues un atacante puede “maquillar” su mac para entrar.&gt; Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</code></pre><p>Si tienes varios archivos .cap, puedes ponerlos todos separados de espacios. Al hacer esto, nuestro PC empezará a sacar la contraseña y te la mostrará. Si la red tiene poco tráfico, puede llevarte mucho tiempo conseguir ese número de paquetes. En otro post pondré como hacer que el número de paquetes suba más rápido con inyección de paquetes. Tener 100000 paquetes no te asegura que se vaya a sacar la pass. A veces es suficiente con menos, otras veces se necesitan más, eso es cuestión de suerte. Además, si durante el proceso se ha cambiado la contraseña no se sacará nunca. Pero eso no es problema porque en tu propia red sabes cuando se cambia la pass. Como véis, para tener una red segura, lo más improtante es tener una seguridad WPA. El filtrado de mac también ayuda, pero no es nada seguro, pues un atacante puede “maquillar” su mac para entrar.</p>
+<blockquote>
+<p>Article automatically imported from my old wordpress blog. Here only for reference. Possible format errors and probable missing images. Sorry about that.</p>
+</blockquote>
 
       
     </div>
