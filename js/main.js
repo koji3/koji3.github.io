@@ -1,144 +1,138 @@
-require([], function (){
+// Dean Attali / Beautiful Jekyll 2016
 
-    var isMobileInit = false;
-    var loadMobile = function(){
-        require([yiliaConfig.rootUrl + 'js/mobile.js'], function(mobile){
-            mobile.init();
-            isMobileInit = true;
-        });
-    }
-    var isPCInit = false;
-    var loadPC = function(){
-        require([yiliaConfig.rootUrl + 'js/pc.js'], function(pc){
-            pc.init();
-            isPCInit = true;
-        });
-    }
+var main = {
 
-    var browser={
-        versions:function(){
-        var u = window.navigator.userAgent;
-        return {
-            trident: u.indexOf('Trident') > -1, //IE内核
-            presto: u.indexOf('Presto') > -1, //opera内核
-            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-            iPad: u.indexOf('iPad') > -1, //是否为iPad
-            webApp: u.indexOf('Safari') == -1 ,//是否为web应用程序，没有头部与底部
-            weixin: u.indexOf('MicroMessenger') == -1 //是否为微信浏览器
-            };
-        }()
-    }
+  bigImgEl : null,
+  numImgs : null,
 
-    $(window).bind("resize", function(){
-        if(isMobileInit && isPCInit){
-            $(window).unbind("resize");
-            return;
-        }
-        var w = $(window).width();
-        if(w >= 700){
-            loadPC();
-        }else{
-            loadMobile();
+  init : function() {
+    // Shorten the navbar after scrolling a little bit down
+    $(window).scroll(function() {
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar").addClass("top-nav-short");
+        } else {
+            $(".navbar").removeClass("top-nav-short");
         }
     });
+    
+    // On mobile, hide the avatar when expanding the navbar menu
+    $('#main-navbar').on('show.bs.collapse', function () {
+      $(".navbar").addClass("top-nav-expanded");
+    });
+    $('#main-navbar').on('hidden.bs.collapse', function () {
+      $(".navbar").removeClass("top-nav-expanded");
+    });
+	
+    // On mobile, when clicking on a multi-level navbar menu, show the child links
+    $('#main-navbar').on("click", ".navlinks-parent", function(e) {
+      var target = e.target;
+      $.each($(".navlinks-parent"), function(key, value) {
+        if (value == target) {
+          $(value).parent().toggleClass("show-children");
+        } else {
+          $(value).parent().removeClass("show-children");
+        }
+      });
+    });
+    
+    // Ensure nested navbar menus are not longer than the menu header
+    var menus = $(".navlinks-container");
+    if (menus.length > 0) {
+      var navbar = $("#main-navbar ul");
+      var fakeMenuHtml = "<li class='fake-menu' style='display:none;'><a></a></li>";
+      navbar.append(fakeMenuHtml);
+      var fakeMenu = $(".fake-menu");
 
-    if(browser.versions.mobile === true || $(window).width() < 700){
-        loadMobile();
-    }else{
-        loadPC();
-    }
-
-    //是否使用fancybox
-    if(yiliaConfig.fancybox === true){
-        require([yiliaConfig.rootUrl + 'fancybox/jquery.fancybox.js'], function(pc){
-            var isFancy = $(".isFancy");
-            if(isFancy.length != 0){
-                var imgArr = $(".article-inner img");
-                for(var i=0,len=imgArr.length;i<len;i++){
-                    var src = imgArr.eq(i).attr("src");
-                    var title = imgArr.eq(i).attr("alt");
-                    imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' title='"+title+"'></a>");
-                }
-                $(".article-inner .fancy-ctn").fancybox();
-            }
-        });
-
-    }
-    //是否开启动画
-    if(yiliaConfig.animate === true){
-
-        require([yiliaConfig.rootUrl + 'js/jquery.lazyload.js'], function(){
-            //avatar
-            $(".js-avatar").attr("src", $(".js-avatar").attr("lazy-src"));
-            $(".js-avatar")[0].onload = function(){
-                $(".js-avatar").addClass("show");
-            }
-        });
-
-      if(yiliaConfig.isHome === true) {
-        // 滚动条监听使用scrollreveal.js
-        // https://github.com/jlmakes/scrollreveal.js
-        // 使用cdn[//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js]
-        require([
-          '//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js'
-        ], function (ScrollReveal) {
-          // 更多animation:
-          // http://daneden.github.io/animate.css/
-          var animationNames = [
-            "pulse", "fadeIn","fadeInRight", "flipInX", "lightSpeedIn","rotateInUpLeft", "slideInUp","zoomIn",
-            ],
-            len = animationNames.length,
-            randomAnimationName = animationNames[Math.ceil(Math.random() * len) - 1];
-
-          // ie9 不支持css3 keyframe动画, safari不支持requestAnimationFrame, 不使用随机动画，切回原来的动画
-          if (!window.requestAnimationFrame) {
-              $('.body-wrap > article').css({opacity: 1});
-
-              if (navigator.userAgent.match(/Safari/i)) {
-                  function showArticle(){
-                      $(".article").each(function(){
-                          if( $(this).offset().top <= $(window).scrollTop()+$(window).height() && !($(this).hasClass('show')) ) {
-                              $(this).removeClass("hidden").addClass("show");
-                              $(this).addClass("is-hiddened");
-                          }else{
-                              if(!$(this).hasClass("is-hiddened")){
-                                  $(this).addClass("hidden");
-                              }
-                          }
-                      });
-                  }
-                  $(window).on('scroll', function(){
-                      showArticle();
-                  });
-                  showArticle();
-              }
-              return;
+      $.each(menus, function(i) {
+        var parent = $(menus[i]).find(".navlinks-parent");
+        var children = $(menus[i]).find(".navlinks-children a");
+        var words = [];
+        $.each(children, function(idx, el) { words = words.concat($(el).text().trim().split(/\s+/)); });
+        var maxwidth = 0;
+        $.each(words, function(id, word) {
+          fakeMenu.html("<a>" + word + "</a>");
+          var width =  fakeMenu.width();
+          if (width > maxwidth) {
+            maxwidth = width;
           }
-          // document.body有些浏览器不支持监听scroll，所以使用默认的document.documentElement
-          ScrollReveal({
-            duration: 0,
-            afterReveal: function (domEl) {
-              // safari不支持requestAnimationFrame不支持document.documentElement的onscroll所以这里不会执行
-              // 初始状态设为opacity: 0, 动画效果更平滑一些(由于脚本加载是异步，页面元素渲染后在执行动画，感觉像是延时)
-              $(domEl).addClass('animated ' + randomAnimationName).css({opacity: 1});
-            }
-          }).reveal('.body-wrap > article');
-
         });
-      } else {
-        $('.body-wrap > article').css({opacity: 1});
-      }
+        $(menus[i]).css('min-width', maxwidth + 'px')
+      });
 
-    }
+      fakeMenu.remove();
+    }        
+    
+    // show the big header image	
+    main.initImgs();
+  },
+  
+  initImgs : function() {
+    // If the page was large images to randomly select from, choose an image
+    if ($("#header-big-imgs").length > 0) {
+      main.bigImgEl = $("#header-big-imgs");
+      main.numImgs = main.bigImgEl.attr("data-num-img");
 
-    //是否新窗口打开链接
-    if(yiliaConfig.open_in_new == true){
-        $(".article a[href]").attr("target", "_blank")
+          // 2fc73a3a967e97599c9763d05e564189
+	  // set an initial image
+	  var imgInfo = main.getImgInfo();
+	  var src = imgInfo.src;
+	  var desc = imgInfo.desc;
+  	  main.setImg(src, desc);
+  	
+	  // For better UX, prefetch the next image so that it will already be loaded when we want to show it
+  	  var getNextImg = function() {
+	    var imgInfo = main.getImgInfo();
+	    var src = imgInfo.src;
+	    var desc = imgInfo.desc;		  
+	    
+		var prefetchImg = new Image();
+  		prefetchImg.src = src;
+		// if I want to do something once the image is ready: `prefetchImg.onload = function(){}`
+		
+  		setTimeout(function(){
+                  var img = $("<div></div>").addClass("big-img-transition").css("background-image", 'url(' + src + ')');
+  		  $(".intro-header.big-img").prepend(img);
+  		  setTimeout(function(){ img.css("opacity", "1"); }, 50);
+		  
+		  // after the animation of fading in the new image is done, prefetch the next one
+  		  //img.one("transitioned webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+		  setTimeout(function() {
+		    main.setImg(src, desc);
+			img.remove();
+  			getNextImg();
+		  }, 1000); 
+  		  //});		
+  		}, 6000);
+  	  };
+	  
+	  // If there are multiple images, cycle through them
+	  if (main.numImgs > 1) {
+  	    getNextImg();
+	  }
     }
-    $(".archive-article-title").attr("target", "_blank");
-});
+  },
+  
+  getImgInfo : function() {
+  	var randNum = Math.floor((Math.random() * main.numImgs) + 1);
+    var src = main.bigImgEl.attr("data-img-src-" + randNum);
+	var desc = main.bigImgEl.attr("data-img-desc-" + randNum);
+	
+	return {
+	  src : src,
+	  desc : desc
+	}
+  },
+  
+  setImg : function(src, desc) {
+	$(".intro-header.big-img").css("background-image", 'url(' + src + ')');
+	if (typeof desc !== typeof undefined && desc !== false) {
+	  $(".img-desc").text(desc).show();
+	} else {
+	  $(".img-desc").hide();  
+	}
+  }
+};
+
+// 2fc73a3a967e97599c9763d05e564189
+
+document.addEventListener('DOMContentLoaded', main.init);

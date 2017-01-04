@@ -1,157 +1,35 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="google-site-verification" content="" />
-  
-  <title>Agregar subtítulos automáticamente desde el Terminal de Linux</title>
-  <meta name="author" content="Jose Linares">
-   <meta name="description" content="Hay gente, demasiada gente, que sigue teniéndole miedo al terminal. No lo comprendo, ya que te puede ayudar a automatizar tareas para que acabes mucho">
-  
+extends partial/base
 
-  <meta property="og:title" content="Agregar subtítulos automáticamente desde el Terminal de Linux"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:site_name" content="Jose-Linares.com"/>
- <meta property="og:image" content="undefined"/>
-  
-  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
-  <link rel="alternate" href="/atom.xml" title="Jose-Linares.com" type="application/atom+xml">
-  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/m.min.css">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-</head>
-
-<body>
-  <a id="top"></a>
-  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
-  <div id="main">
-    <div class="behind">
-      <div class="back">
-        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
-      </div>
-      <div class="description">
-        &nbsp;Mi pequeño cachito de internet
-      </div>
-    </div>
-    <div class="container">
-      
-
-  <article class="standard post">
-    <div class="title">
-      
-  
-    <h1 class="page-title center">
-        Agregar subtítulos automáticamente desde el Terminal de Linux
-    </h1>
-  
+include partial/post-meta
 
 
-    </div>
-    <div class="meta center">
-      
-<time datetime="2012-12-23T11:35:58.000Z">
-  <i class="fa fa-calendar"></i>&nbsp;
-  23/12/2012
-</time>
+block header
+    header.header-section
+        .intro-header.no-img
+            .container
+                .row
+                    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                        .post-heading
+                            h1= page.title
+                            if page.subtitle
+                                h2.post-subheading= page.subtitle
+                            +post_meta(page.date, page.tags)
+
+block content
+    .container
+        .row
+            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                article(role="main", class="blog-post")
+                    != page.content
+                ul.pager.blog-pager
+                    if page.prev
+                        li.previous
+                            a(href=url_for(page.prev.path), data-toggle="tooltip", data-placement="top", title=page.prev.title)= __('prev_post')
+                    if page.next
+                        li.next
+                            a(href=url_for(page.next.path), data-toggle="tooltip", data-placement="top", title=page.next.title)= __('next_post')
+
+                include partial/comment
 
 
 
-
-
-
-
-    </div>
-    <hr>
-    <div class="picture-container">
-      
-    </div>
-    <p>Hay gente, demasiada gente, que sigue teniéndole miedo al terminal. No lo comprendo, ya que te puede ayudar a automatizar tareas para que acabes mucho antes. Hoy os voy a enseñar a poner subtítulos a los videos con mencoder y a crearos un script para que los añada automaticamente a todos los capítulos de una serie. Empecemos: Antes de nada, tenemos que tener instalado el programa “mencoder”. Este se encuentra en los repositorios de las distros más importantes. Una vez que lo tengamos, hacemos un cd a la carpeta donde tengamos el vídeo y los subtítulos y ejecutamos: </p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mencoder <span class="string">"Pelicula.avi"</span> -<span class="keyword">sub </span><span class="string">"Subtítulos.srt"</span> -oac copy -ovc lavc -o <span class="string">"Salida.avi"</span> -<span class="keyword">subcp </span>utf-8 -<span class="keyword">subfont-text-scale </span><span class="number">2</span>.<span class="number">8</span><span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>Donde: </p>
-<ul>
-<li>“Pelicula.avi” es la película sin subtítulos (Formato .avi o cualquier otro que acepte mencoder)</li>
-<li>“Subtitulos.srt” es el archivo de subtítulos</li>
-<li>“Salida.avi” es el archivo que devolverá el comando, con los subs incrustados</li>
-<li>utf-8 es la codificación que usará (Si se ven caracteres extraños prueba con latin1 o latin2)</li>
-<li>Y 2.8 es el tamapo que tendrá la fuente</li>
-</ul>
-<p><img src="/wp-content/uploads/2012/12/Screenshot-from-2012-12-23-132104-300x168.png" alt="Screenshot from 2012-12-23 13:21:04"></p>
-<p>Hasta aquí creo que es bastante fácil. Ahora viene construir un Script para que se nos peguen los subtítulos a todos los episodios de una serie. Yo voy a usar de ejemplo la primera temporada de Breaking Bad. Abrimos un editor de texto y pegamos lo siguiente: </p>
-<pre><code>#!/bin/bash
-
-cd /run/media/joselito/EXTERNO/Series/Breaking\ Bad/Breaking\ Bad\ s01
-
-for x in `seq 1 7`; do
-
-mencoder &quot;Breaking Bad.s01e0$x*.avi&quot; -sub &quot;Breaking Bad - S01E0$x*.srt&quot; -oac copy -ovc lavc -o &quot;episodio$x.avi&quot; -subcp utf-8 -subfont-text-scale 2.8;
-
-done
-</code></pre><p>El funcionamiento del script es básico: </p>
-<ol>
-<li>Cambia de carpeta para situarnos en la carpeta donde están tanto la serie como los subtítulos</li>
-<li>Entra en un bucle desde 1 hasta , en mi caso 7. En tu caso, cambia este número por la cantidad de capítulos que tengas.</li>
-<li>Ya dentro del bucle ejecuta el comando que vimos antes pero modificando tanto las entradas como las salidas según el numero de interacción en la que nos encontremos. Esto se consigue cambiando el numero del capitulo por $x<br>Los mas expertos podrían hacer un programa usando esto y Zenity, pidiendo el numero de capitulos que tendrá, la carpeta donde están los capitulos y tal. Si tengo tiempo lo hago y os lo subo :) En el próximo post, hablaré de como añadir subtítulos automáticamente con el programa VLC y un plugin adicional</li>
-</ol>
-
-
-  </article>
-  </script>
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-  </script>
-  <div class="busuanzi center">
-    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
-    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
-    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
-  </div>
-
-
-
-
-    </div>
-  </div>
-  <footer class="page-footer"><div class="clearfix">
-</div>
-<div class="right-foot container">
-    <div class="firstrow">
-        <a href="#top" target="_self">
-        <i class="fa fa-arrow-right"></i>
-        </a>
-        © XXX 20xx-2017
-    </div>
-    <div class="secondrow">
-        <a href="https://github.com/gaoryrt/hexo-theme-pln">
-        Theme Pln
-        </a>
-    </div>
-</div>
-<div class="clearfix">
-</div>
-</footer>
-  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
-<script src="/js/search.js"></script>
-<script type="text/javascript">
-
-// disqus scripts
-
-
-// dropdown scripts
-$(".dropdown").click(function(event) {
-  var current = $(this);
-  event.stopPropagation();
-  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
-});
-$(document).click(function(){
-    $(".dropdown-content").removeClass("open");
-})
-
-var path = "/search.xml";
-searchFunc(path, 'local-search-input', 'local-search-result');
-
-</script>
-
-</body>
-</html>
