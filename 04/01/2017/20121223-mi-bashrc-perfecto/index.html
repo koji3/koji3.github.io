@@ -7,12 +7,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="google-site-verification" content="" />
   
-  <title>Hello World</title>
+  <title>Jose-Linares.com</title>
   <meta name="author" content="Jose Linares">
-   <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+   <meta name="description" content="title: Mi .bashrc perfectolink: http://jose-linares.com/mi-bashrc-perfecto/author: koji3description:post_id: 19created: 2012/12/23 13:25:49created_gmt">
   
 
-  <meta property="og:title" content="Hello World"/>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:site_name" content="Jose-Linares.com"/>
  <meta property="og:image" content="undefined"/>
@@ -45,7 +45,7 @@
       
   
     <h1 class="page-title center">
-        Hello World
+        
     </h1>
   
 
@@ -53,7 +53,7 @@
     </div>
     <div class="meta center">
       
-<time datetime="2017-01-04T19:13:38.846Z">
+<time datetime="2017-01-04T19:57:05.381Z">
   <i class="fa fa-calendar"></i>&nbsp;
   04/01/2017
 </time>
@@ -69,15 +69,45 @@
     <div class="picture-container">
       
     </div>
-    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <p>title: Mi .bashrc perfecto<br>link: <a href="http://jose-linares.com/mi-bashrc-perfecto/">http://jose-linares.com/mi-bashrc-perfecto/</a><br>author: koji3<br>description:<br>post_id: 19<br>created: 2012/12/23 13:25:49<br>created_gmt: 2012/12/23 13:25:49<br>comment_status: open<br>post_name: mi-bashrc-perfecto<br>status: publish<br>post_type: post</p>
+<h1 id="Mi-bashrc-perfecto"><a href="#Mi-bashrc-perfecto" class="headerlink" title="Mi .bashrc perfecto"></a>Mi .bashrc perfecto</h1><p>Para los que no sepan los que es el archivo .bashrc es un archvo oculto que todos tenemos en nuestro home (todos los que tengamos linux. Si usas Windows o Mac, te pido que abandones el blog y no vuelvas hasta que no hayas madurado) Este archivo se carga automáticamente cada vez que se abre un terminal. Esto le dá mucho juego y ahora os voy a explicar como lo tengo personalizado: </p>
+<pre><code># .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+#Alias personalizados por mi
+
+alias instalar=&apos;sudo yum install&apos;
+
+alias actualizar=&apos;sudo yum update&apos;
+
+alias abrelampp=&apos;sudo /opt/lampp/lampp start&apos;
+
+alias cierralampp=&apos;sudo /opt/lampp/lampp stop&apos;
+
+alias reboot=&apos;sudo reboot&apos;
+
+alias please=&apos;sudo&apos;
+
+alias info=&apos;screenfetch-dev&apos;
+
+alias leds=&apos;sudo tleds -d 10 wlan0&apos;
+
+alias resolucion=&apos;xrandr&apos;
+
+#Personalizacion del terminal
+
+PS1=&quot;\[\e[33;1m\]─(\[\e[31;1m\]\u\[\e[33;1m\]) » {\[\e[34;1m\]\w\[\e[33;1m\]}\[\e[0m\] &quot;
+
+#letras guays
+
+echo &quot;----------------------------------------------------------------------------&quot;
+figlet Jose Mola Mazo
+echo &quot;----------------------------------------------------------------------------&quot;
+</code></pre><p>Lo que pone antes de los alias es lo que venía por defecto. No sé exactamente que hace, así que mejor no tocar. Luego, los alias. Sirven para renombrar funciones para que sean más fáciles de recordar y más rápidas de escribir. Tengo unos para instalar programas y actualizar el sistema. En vez de escribir “sudo yum install firefox” pongo “instalar firefox” y ya mi terminal me entiende. También tengo alias para abrir y cerrar el lampp, para mostrar la información de mi distro, para ejecutar la aplicación tleds y para cambiar la resolución de la pantalla. Después tengo la personalización del prompt. Con colores y demás. A mi gusto todo. Y por último tengo el mensaje que me sale cada vez que abro la terminal: Jose Mola Mazo. En letras grandes y bonitas: <img src="/wp-content/uploads/2012/12/Screenshot-from-2012-12-23-142516.png" alt="Screenshot from 2012-12-23 14:25:16">   Os gusta?</p>
 
 
   </article>
