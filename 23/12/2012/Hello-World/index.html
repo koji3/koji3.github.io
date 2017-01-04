@@ -9,7 +9,7 @@
   
   <title>Agregar subtítulos automáticamente desde el Terminal de Linux</title>
   <meta name="author" content="Jose Linares">
-   <meta name="description" content="Agregar subtítulos automáticamente desde el Terminal de LinuxHay gente, demasiada gente, que sigue teniéndole miedo al terminal. No lo comprendo, ya q">
+   <meta name="description" content="Hay gente, demasiada gente, que sigue teniéndole miedo al terminal. No lo comprendo, ya que te puede ayudar a automatizar tareas para que acabes mucho">
   
 
   <meta property="og:title" content="Agregar subtítulos automáticamente desde el Terminal de Linux"/>
@@ -69,8 +69,8 @@
     <div class="picture-container">
       
     </div>
-    <h1 id="Agregar-subtitulos-automaticamente-desde-el-Terminal-de-Linux"><a href="#Agregar-subtitulos-automaticamente-desde-el-Terminal-de-Linux" class="headerlink" title="Agregar subtítulos automáticamente desde el Terminal de Linux"></a>Agregar subtítulos automáticamente desde el Terminal de Linux</h1><p>Hay gente, demasiada gente, que sigue teniéndole miedo al terminal. No lo comprendo, ya que te puede ayudar a automatizar tareas para que acabes mucho antes. Hoy os voy a enseñar a poner subtítulos a los videos con mencoder y a crearos un script para que los añada automaticamente a todos los capítulos de una serie. Empecemos: Antes de nada, tenemos que tener instalado el programa “mencoder”. Este se encuentra en los repositorios de las distros más importantes. Una vez que lo tengamos, hacemos un cd a la carpeta donde tengamos el vídeo y los subtítulos y ejecutamos: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mencoder &quot;Pelicula.avi&quot; -sub &quot;Subtítulos.srt&quot; -oac copy -ovc lavc -o &quot;Salida.avi&quot; -subcp utf-8 -subfont-text-scale 2.8;</div></pre></td></tr></table></figure>
+    <p>Hay gente, demasiada gente, que sigue teniéndole miedo al terminal. No lo comprendo, ya que te puede ayudar a automatizar tareas para que acabes mucho antes. Hoy os voy a enseñar a poner subtítulos a los videos con mencoder y a crearos un script para que los añada automaticamente a todos los capítulos de una serie. Empecemos: Antes de nada, tenemos que tener instalado el programa “mencoder”. Este se encuentra en los repositorios de las distros más importantes. Una vez que lo tengamos, hacemos un cd a la carpeta donde tengamos el vídeo y los subtítulos y ejecutamos: </p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mencoder <span class="string">"Pelicula.avi"</span> -<span class="keyword">sub </span><span class="string">"Subtítulos.srt"</span> -oac copy -ovc lavc -o <span class="string">"Salida.avi"</span> -<span class="keyword">subcp </span>utf-8 -<span class="keyword">subfont-text-scale </span><span class="number">2</span>.<span class="number">8</span><span class="comment">;</span></div></pre></td></tr></table></figure>
 <p>Donde: </p>
 <ul>
 <li>“Pelicula.avi” es la película sin subtítulos (Formato .avi o cualquier otro que acepte mencoder)</li>
